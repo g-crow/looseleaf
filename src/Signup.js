@@ -1,15 +1,11 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+import react;
 
-    <title>looseleaf</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <header>looseleaf</header>
+class Signup extends Component {
+  render() {
+    return ( 
+
+ <div id="root"></div>
+    <header>loose-leaf</header>
     <form>
 			<input type="text" class="textInput" id="firstName" placeholder="First name">
 			<input type="text" class="textInput" id="lastName" placeholder="Last name">
@@ -20,5 +16,9 @@
       <input type="button" class="textInput" id="createAccount" value="Create account">
 		</form>
 		<div class="underForm">Already have an account? <a href="./login.html">Login</a></div>
-  </body>
-</html>
+
+	);
+  }
+}
+
+export default Signup;
