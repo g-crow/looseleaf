@@ -1,13 +1,43 @@
-import react;
+import React, {Component} from 'react';
+import $ from 'jquery';
 
 class Login extends Component{
+
+  constructor(props) {
+    super(props)
+    this.state = {
+        username: '',
+        password: ''
+    };
+  }
+
+  usernameChange(e) {
+    this.setState( {username: e.target.value} )
+  };
+  passwordChange(e) {
+    this.setState( {password: e.target.value} )
+  };
+
+   validateUser(){
+    $.ajax ({
+      method: 'POST',
+      url: 'http://localhost:3002/api/authenticate', 
+      data: JSON.stringify(this.state), 
+      contentType: 'application/json'
+      });
+    }
+  
+
+
   render(){
     return(
       <div>
           <form>
-      			<input type="text" class="username" placeholder="Enter username">
-      			<input type="password" class="password" placeholder="Enter password">
-      			<input type="button" class="login" value="Login">
+      			<input type="text" className="username" placeholder="Enter username" 
+            value={this.state.username} onChange={this.usernameChange.bind(this)} />
+      			<input type="password" className="password" placeholder="Enter password" 
+            value={this.state.password} onChange={this.passwordChange.bind(this)} />
+      			<input type="button" className="login" value="Login" onClick={this.validateUser.bind(this)} />
       		</form>
 
       		<div class="underForm">Sign Up Here</div>

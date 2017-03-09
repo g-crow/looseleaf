@@ -1,4 +1,4 @@
 module.exports = {
   'secret': 'ihatejavascript',
-  'database': 'mongodb://localhost/users'
+  'database': 'mongodb://localhost/Looseleaf'
 }

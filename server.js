@@ -11,8 +11,18 @@ var config = require('./config');
 var User = require('./server/models/user.js');
 //requires dependencies
 
+
 mongoose.connect(config.database);
 app.set('superSecret', config.secret);
+
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE")
+  next();
+});
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -22,7 +32,27 @@ app.use(morgan('dev'));
 //Routes for user creation & login
 var apiRoutes = express.Router();
 
+apiRoutes.post("/createuser", function (req, res){
+	var user = new User ({
+		firstName: req.body.firstName,
+    	lastName: req.body.lastName,
+    	email: req.body.email,
+    	username: req.body.username,
+    	password: req.body.password,
+    	confirmPass: req.body.confirmPass
+	})
+
+
+		user.save(function(err) {
+			if(err) throw err;
+
+			console.log('User saved!');
+			res.json({ success: true });
+		});
+})
+
 apiRoutes.post('/authenticate', function(req, res) {
+
 
 	//find the user
 	User.findOne({
@@ -50,8 +80,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 	});
 });
 
-//token code following authenticate vv
-apiRoutes.use(function(req, res, next) {
+function requireAuthentication(req, res, next) {
 	var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
 	//decode token
@@ -70,9 +99,9 @@ apiRoutes.use(function(req, res, next) {
 			message: 'No token provided.'
 		});
 	}
-});
+}
 
-apiRoutes.get('/', function(req, res) {
+apiRoutes.get('/', requireAuthentication, function(req, res) {
 	res.json({ message: "We rock!" });
 });
 
@@ -83,6 +112,8 @@ apiRoutes.get('/users', function(req, res) {
 });
 
 app.use('/api', apiRoutes);
+
+
 
 //Created test users in database
 // app.get('/setup', function(req, res){
@@ -105,20 +136,9 @@ app.use('/api', apiRoutes);
 // });
 
 
-// app.post("/createuser", function (req, res){
-// 	new User (
-// 	var user = {
-// 		firstName: req.body.firstName
-//     	lastName: req.body.lastName
-//     	email: req.body.email
-//     	username: req.body.username
-//     	password: req.body.password
-// 	})
-// })
 
 
-
-app.listen(3000);
+app.listen(3002);
 console.log('Magic');
 
 //establishes which local port server is running on
