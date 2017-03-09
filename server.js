@@ -14,32 +14,95 @@ var User = require('./server/models/user.js');
 mongoose.connect(config.database);
 app.set('superSecret', config.secret);
 
-
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //middleware allowing translation from .json to JavaScript objects and vice versa
 app.use(morgan('dev'));
 
+//Routes for user creation & login
+var apiRoutes = express.Router();
 
-app.get('/setup', function(req, res){
-		var nick = new User ({
-			firstName: 'nick',
-		  lastName: 'buttkiss',
-		  email: 'nick@buttkiss.com',
-		  username: 'buttkissN',
-		  password: 'password',
-		  created_at: 10/2/12,
-		  updated_at: 10/3/12
-		});
+apiRoutes.post('/authenticate', function(req, res) {
 
-		nick.save(function(err) {
-			if(err) throw err;
+	//find the user
+	User.findOne({
+		username: req.body.username
+	}, function(err, user) {
 
-			console.log('nick is a buttkiss');
-			res.json({ success: true });
-		});
+		if (err) throw err;
+
+		if (!user) {
+			res.json({ success: false, message: "Authentication failed. User not found."});
+		} else if (user) {
+			if (user.password != req.body.password) {
+				res.json({ success: false, message: "Authentication failed. Wrong password." });
+			} else {
+				var token = jwt.sign(user, app.get('superSecret'), {
+					expiresIn: 1440 //expires in 24 hours
+				});
+				res.json({
+					success: true,
+					message: 'Enjoy your token!',
+					token: token
+				});
+			}
+		}
+	});
 });
+
+//token code following authenticate vv
+apiRoutes.use(function(req, res, next) {
+	var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+	//decode token
+	if (token) {
+		jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+			if (err) {
+				return res.json({ success: false, message: 'Failed to authenticate token.'});
+			} else {
+				req.decoded = decoded;
+				next();
+			}
+		});
+	} else {
+		return res.status(403).send({
+			success: false,
+			message: 'No token provided.'
+		});
+	}
+});
+
+apiRoutes.get('/', function(req, res) {
+	res.json({ message: "We rock!" });
+});
+
+apiRoutes.get('/users', function(req, res) {
+	User.find({}, function(err, users) {
+		res.json(users);
+	});
+});
+
+app.use('/api', apiRoutes);
+
+//Created test users in database
+// app.get('/setup', function(req, res){
+// 		var Gen = new User ({
+// 			firstName: 'Genevieve',
+// 		  lastName: 'buttkiss',
+// 		  email: 'Genevieve@buttkiss.com',
+// 		  username: 'buttkissG',
+// 		  password: 'password',
+// 		  created_at: 2012-01-03,
+// 		  updated_at: 2017-03-08
+// 		});
+//
+// 		Gen.save(function(err) {
+// 			if(err) throw err;
+//
+// 			console.log('nick is a buttkiss');
+// 			res.json({ success: true });
+// 		});
+// });
 
 
 // app.post("/createuser", function (req, res){
