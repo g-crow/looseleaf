@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Login from '../src/Login';
+import Artboard from './components/Artboard';
 
 ReactDOM.render(
-  <Login />,
+  <Artboard />,
   document.getElementById('root')
 );
