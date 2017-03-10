@@ -10,7 +10,9 @@ class Signup extends Component {
         lastName: '',
         email: '',
         username: '',
-        password: ''
+        password: '',
+        confirmPass: '',
+        test: false
     };
   }
 
@@ -34,17 +36,23 @@ class Signup extends Component {
     this.setState ( {confirmPass: e.target.value} )
   }
 
-  // validateForm(){
 
-  // }
 
   createUserEvent(){
+    
+    if (this.state.password === this.state.confirmPass) {
+
     $.ajax ({
       method: 'POST',
       url: 'http://localhost:3002/api/createuser', 
       data: JSON.stringify(this.state), 
       contentType: 'application/json'
     });
+    } else {
+      this.setState ({test: true})
+    } 
+    //if not, do something else (display a div)
+
   }
 
   render() {
@@ -59,6 +67,7 @@ class Signup extends Component {
       			<input type="email" className="textInput" id="emailInput" placeholder="Email address" value={this.state.email} onChange={this.emailChange.bind(this)} />
             <input type="button" className="textInput" id="createAccount" value="Create account" onClick={this.createUserEvent.bind(this)} />
       		</form>
+        { this.state.test ? (<div id="wrongPassword">Sorry, password doesn't match. Try again.</div>) : (<div />) }
     		<div className="underForm">Already have an account?</div>
       </div>
 	  );

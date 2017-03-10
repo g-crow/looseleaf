@@ -17,7 +17,7 @@ app.set('superSecret', config.secret);
 
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", config.webpack);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE")
   next();
@@ -63,7 +63,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 
 		if (!user) {
 			res.json({ success: false, message: "Authentication failed. User not found."});
-		} else if (user) {
+		} else {
 			if (user.password != req.body.password) {
 				res.json({ success: false, message: "Authentication failed. Wrong password." });
 			} else {

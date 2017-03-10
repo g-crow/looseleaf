@@ -24,7 +24,9 @@ class Login extends Component{
       url: 'http://localhost:3002/api/authenticate', 
       data: JSON.stringify(this.state), 
       contentType: 'application/json'
-      });
+      }).then(function (sucess) {
+        console.log(sucess);
+      })
     }
   
 
@@ -40,7 +42,7 @@ class Login extends Component{
       			<input type="button" className="login" value="Login" onClick={this.validateUser.bind(this)} />
       		</form>
 
-      		<div class="underForm">Sign Up Here</div>
+      		<div className="underForm">Sign Up Here</div>
       </div>
     );
   }
