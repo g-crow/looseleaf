@@ -15,14 +15,15 @@ import Todo from './components/Todo'
 
 render((
   <Router history={hashHistory}>
-    <Route path="/" component={App}/>
-    <Route path="/artboard" component={Artboard}/>
-    <Route path="/calendar" component={Calendar}/>
-    <Route path="/goals" component={Goals}/>
-    <Route path="/journal" component={Journal}/>
-    <Route path="/login" component={Login}/>
-    <Route path="/notepad" component={Notepad}/>
-    <Route path="/signup" component={Signup}/>
-    <Route path="/todo" component={Todo}/>
+    <Route path="/" component={App}>
+      <Route path="/artboard" component={Artboard} />
+      <Route path="/calendar" component={Calendar} />
+      <Route path="/goals" component={Goals} />
+      <Route path="/journal" component={Journal} />
+      <Route path="/login" component={Login} />
+      <Route path="/notepad" component={Notepad} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/todo" component={Todo} />
+    </Route>
   </Router>
 ), document.getElementById('root'))
