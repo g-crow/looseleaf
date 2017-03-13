@@ -4,11 +4,13 @@ var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
-var session = require('express-session')
-
+var session = require('express-session');
+var usercontroller = require('./server/controllers/userController');
 var jwt = require('jsonwebtoken');
 var config = require('./config');
 var User = require('./server/models/user.js');
+var Todo = require('./server/models/todo');
+var todoscontroller = require('./server/controllers/todosController')
 //requires dependencies
 
 
@@ -29,27 +31,13 @@ app.use(bodyParser.json());
 //middleware allowing translation from .json to JavaScript objects and vice versa
 app.use(morgan('dev'));
 
-//Routes for user creation & login
+
 var apiRoutes = express.Router();
 
-apiRoutes.post("/createuser", function (req, res){
-	var user = new User ({
-		firstName: req.body.firstName,
-    	lastName: req.body.lastName,
-    	email: req.body.email,
-    	username: req.body.username,
-    	password: req.body.password,
-    	confirmPass: req.body.confirmPass
-	})
+apiRoutes.post("/createuser", usercontroller.createuser);
 
+apiRoutes.post("/createtodo", todoscontroller.createTodo);
 
-		user.save(function(err) {
-			if(err) throw err;
-
-			console.log('User saved!');
-			res.json({ success: true });
-		});
-})
 
 apiRoutes.post('/authenticate', function(req, res) {
 
@@ -111,33 +99,17 @@ apiRoutes.get('/users', function(req, res) {
 	});
 });
 
+apiRoutes.get('/currentTodos', function(req, res) {
+  Todo.find({}, function(err, todos) {
+    res.json(todos);
+  });
+});
+
+
+
+
+
 app.use('/api', apiRoutes);
-
-
-
-//Created test users in database
-// app.get('/setup', function(req, res){
-// 		var Gen = new User ({
-// 			firstName: 'Genevieve',
-// 		  lastName: 'buttkiss',
-// 		  email: 'Genevieve@buttkiss.com',
-// 		  username: 'buttkissG',
-// 		  password: 'password',
-// 		  created_at: 2012-01-03,
-// 		  updated_at: 2017-03-08
-// 		});
-//
-// 		Gen.save(function(err) {
-// 			if(err) throw err;
-//
-// 			console.log('nick is a buttkiss');
-// 			res.json({ success: true });
-// 		});
-// });
-
-
-
-
 app.listen(3002);
 console.log('Magic');
 

@@ -1,0 +1,18 @@
+// function (req, res){
+// 	var user = new User ({
+// 		firstName: req.body.firstName,
+//     	lastName: req.body.lastName,
+//     	email: req.body.email,
+//     	username: req.body.username,
+//     	password: req.body.password,
+//     	confirmPass: req.body.confirmPass
+// 	})
+//
+//
+// 		user.save(function(err) {
+// 			if(err) throw err;
+//
+// 			console.log('User saved!');
+// 			res.json({ success: true });
+// 		});
+// })

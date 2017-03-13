@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-
+var config = require('../../Config');
 class Signup extends Component {
-  
+
   constructor(props) {
     super(props)
     this.state = {
@@ -39,18 +39,18 @@ class Signup extends Component {
 
 
   createUserEvent(){
-    
+
     if (this.state.password === this.state.confirmPass) {
 
     $.ajax ({
       method: 'POST',
-      url: 'http://localhost:3002/api/createuser', 
-      data: JSON.stringify(this.state), 
+      url: config.serverRoute + '/createuser',
+      data: JSON.stringify(this.state),
       contentType: 'application/json'
     });
     } else {
       this.setState ({test: true})
-    } 
+    }
     //if not, do something else (display a div)
 
   }
