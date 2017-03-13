@@ -6,10 +6,11 @@ class Todo extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // user: username,
+      user: config.usernamePlaceholder,
       entries: '',
       date: Date.now(),
       current: true,
+      list: []
     };
   }
 
@@ -17,16 +18,21 @@ entryChange(e) {
   this.setState( {entries: e.target.value} )
 }
 
-createList = function(){
-  
+createList(){
+  var list = this.state.list;
+  return list.map(function(entry){
+    return (<li> {entry.entries} </li>)
+  })
 }
 
 updateCurrentTodo(){
+  var self = this;
   $.ajax ({
     method: 'GET',
-    url: config.serverRoute + '/currentTodos'
+    url: config.serverRoute + '/currentTodos/' + self.state.user
   }).done(function(data) {
-
+    self.setState( {list: data} );
+    console.log(self.state.list);
   })
 }
 
@@ -47,9 +53,10 @@ createTodoEvent(){
           		<li> <input type="text" placeholder="to do item" value={this.state.entries} onChange={this.entryChange.bind(this)} /> </li>
           	</ul>
             <input type="button" className="textInput" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
+            <input type="button" className="placeholderButton" id="listTasks" value="List Tasks" onClick={this.updateCurrentTodo.bind(this)} />
           </form>
           <div>
-            <ol id="todoItem">  {}</ol>
+            <ol id="todoItem">  { this.createList() }</ol>
           </div>
         </div>
       );

@@ -99,13 +99,7 @@ apiRoutes.get('/users', function(req, res) {
 	});
 });
 
-apiRoutes.get('/currentTodos', function(req, res) {
-  Todo.find({}, function(err, todos) {
-    res.json(todos);
-  });
-});
-
-
+apiRoutes.get('/currentTodos/:username', todoscontroller.getUserToDoList);
 
 
 
