@@ -51,8 +51,6 @@ class Signup extends Component {
     } else {
       this.setState ({test: true})
     }
-    //if not, do something else (display a div)
-
   }
 
   render() {

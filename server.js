@@ -93,15 +93,12 @@ function requireAuthentication(req, res, next) {
 			}
 		});
 	} else {
-		return res.status(403).send({
-			success: false,
-			message: 'No token provided.'
-		});
-	}
+		return res.status(403).json({error: "No token found"});
+	};
 }
 
 apiRoutes.get('/verification', requireAuthentication, function(req, res) {
-	res.json({ success: true, message: "We rock!" });
+	res.json({ success: true});
 });
 
 apiRoutes.get('/users', function(req, res) {

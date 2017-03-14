@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
+var config = require('../../Config');
 
 class Login extends Component{
 
@@ -21,7 +22,7 @@ class Login extends Component{
    validateUser(){
     $.ajax ({
       method: 'POST',
-      url: 'http://localhost:3002/api/authenticate',
+      url: config.serverRoute + '/authenticate',
       data: JSON.stringify(this.state),
       contentType: 'application/json'
       }).then(function (sucess) {

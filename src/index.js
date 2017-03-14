@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from 'react-dom'
 import App from './components/App'
-import { Router, Route, hashHistory } from 'react-router'
+import { Router, Route, browserHistory } from 'react-router'
 import Artboard from './components/Artboard'
 import Calendar from './components/Calendar'
 import Goals from './components/Goals'
@@ -14,7 +14,7 @@ import Todo from './components/Todo'
 
 
 render((
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path="/" component={App}>
       <Route path="/artboard" component={Artboard} />
       <Route path="/calendar" component={Calendar} />
