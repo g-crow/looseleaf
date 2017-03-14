@@ -3,7 +3,7 @@ var Goal = require('../models/goal')
 function createGoal(req, res){
 	var goal = new Goal ();
 		  // todo.username = ;
-    	goal.entries = req.body.entries;
+    	goal.entry = req.body.entry;
     	goal.date = Date.now();
       goal.current = true
 

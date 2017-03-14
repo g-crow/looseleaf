@@ -7,7 +7,7 @@ class Todo extends Component {
     super(props)
     this.state = {
       user: config.usernamePlaceholder,
-      entries: '',
+      entry: '',
       date: Date.now(),
       current: true,
       list: []
@@ -15,13 +15,13 @@ class Todo extends Component {
   }
 
 entryChange(e) {
-  this.setState( {entries: e.target.value} )
+  this.setState( {entry: e.target.value} )
 }
 
 createList(){
   var list = this.state.list;
   return list.map(function(entry){
-    return (<li> {entry.entries} </li>)
+    return (<li> {entry.entry} </li>)
   })
 }
 
@@ -53,7 +53,7 @@ createTodoEvent(){
           </div>
           <form>
           	<ul className="todo">
-          		<li> <input type="text" placeholder="to do item" value={this.state.entries} onChange={this.entryChange.bind(this)} /> </li>
+          		<li> <input type="text" placeholder="to do item" value={this.state.entry} onChange={this.entryChange.bind(this)} /> </li>
           	</ul>
             <input type="button" className="textInput" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
             <input type="button" className="placeholderButton" id="listTasks" value="List Tasks" onClick={this.updateCurrentTodo.bind(this)} />

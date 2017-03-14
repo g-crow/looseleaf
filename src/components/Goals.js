@@ -7,7 +7,7 @@ class Goals extends Component {
     super(props)
     this.state = {
       user: config.usernamePlaceholder,
-      entries: '',
+      entry: '',
       date: Date.now(),
       current: true,
       list: []
@@ -15,13 +15,13 @@ class Goals extends Component {
   }
 
   entryChange(e) {
-    this.setState( {entries: e.target.value} )
+    this.setState( {entry: e.target.value} )
   }
 
   createGoalList(){
     var list = this.state.list;
     return list.map(function(entry){
-      return (<li> {entry.entries} </li>)
+      return (<li> {entry.entry} </li>)
     })
   }
 
@@ -53,7 +53,7 @@ class Goals extends Component {
         </div>
         <form>
         	<ul className="goals">
-        		<li> <textarea placeholder="goal item" value={this.state.entries} onChange={this.entryChange.bind(this)} /> </li>
+        		<li> <textarea placeholder="goal item" value={this.state.entry} onChange={this.entryChange.bind(this)} /> </li>
         	</ul>
           <input type="button" className="textInput" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} />
           <input type="button" className="placeholderButton" id="listGoals" value="List Goals" onClick={this.updateGoals.bind(this)} />
