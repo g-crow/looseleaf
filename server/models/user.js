@@ -11,5 +11,4 @@ module.exports = mongoose.model('User', Schema ({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   confirmPass: { type: String, required: true},
-  
 }));

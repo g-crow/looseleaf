@@ -50,7 +50,7 @@ createJournalEntry(){
 
     render() {
       return (
-        <div>
+        <div id="journal">
           <div>
             <ul id="journalHistory">{ this.createJournalHistory() }</ul>
           </div>

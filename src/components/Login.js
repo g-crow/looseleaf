@@ -21,23 +21,21 @@ class Login extends Component{
    validateUser(){
     $.ajax ({
       method: 'POST',
-      url: 'http://localhost:3002/api/authenticate', 
-      data: JSON.stringify(this.state), 
+      url: 'http://localhost:3002/api/authenticate',
+      data: JSON.stringify(this.state),
       contentType: 'application/json'
       }).then(function (sucess) {
         console.log(sucess);
       })
     }
-  
-
-
+    
   render(){
     return(
-      <div>
+      <div id="login">
           <form>
-      			<input type="text" className="username" placeholder="Enter username" 
+      			<input type="text" className="username" placeholder="Enter username"
             value={this.state.username} onChange={this.usernameChange.bind(this)} />
-      			<input type="password" className="password" placeholder="Enter password" 
+      			<input type="password" className="password" placeholder="Enter password"
             value={this.state.password} onChange={this.passwordChange.bind(this)} />
       			<input type="button" className="login" value="Login" onClick={this.validateUser.bind(this)} />
       		</form>

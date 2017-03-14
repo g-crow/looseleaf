@@ -47,7 +47,7 @@ class Goals extends Component {
 
   render() {
     return (
-      <div>
+      <div id="goals">
         <div>
           <ul id="todoItem">{ this.createGoalList() }</ul>
         </div>

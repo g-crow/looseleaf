@@ -1,7 +1,4 @@
-textarea {
-	resize: inline;
-}
-
+/* NAVIGATION */
 nav li {
 	display: inline;
 	text-decoration: none;
@@ -10,4 +7,14 @@ nav li {
 
 .active {
 	color: green;
+}
+
+/* compontent elements */
+textarea {
+	resize: inline;
+}
+
+/* component divs */
+#goals, #journal, #notepad, #todo, #calendar {
+	padding: 10px;
 }

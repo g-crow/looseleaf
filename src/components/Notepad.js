@@ -50,7 +50,7 @@ createNoteEvent(){
 
     render() {
       return (
-        <div>
+        <div id="notepad">
           <div>
             <ul id="noteItem">{ this.createNoteList() }</ul>
           </div>

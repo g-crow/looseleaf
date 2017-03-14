@@ -57,7 +57,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
+      <div id="signup">
           <form>
       			<input type="text" className="textInput" id="firstName" placeholder="First name" value={this.state.firstName} onChange={this.firstNameChange.bind(this)} />
       			<input type="text" className="textInput" id="lastName" placeholder="Last name" value={this.state.lastName} onChange={this.lastNameChange.bind(this)} />
