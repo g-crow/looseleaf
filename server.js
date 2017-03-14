@@ -10,7 +10,9 @@ var jwt = require('jsonwebtoken');
 var config = require('./config');
 var User = require('./server/models/user.js');
 var Todo = require('./server/models/todo');
-var todoscontroller = require('./server/controllers/todosController')
+var todoscontroller = require('./server/controllers/todosController');
+var Goal = require('./server/models/goal');
+var goalscontroller = require('./server/controllers/goalsController');
 //requires dependencies
 
 
@@ -38,6 +40,7 @@ apiRoutes.post("/createuser", usercontroller.createuser);
 
 apiRoutes.post("/createtodo", todoscontroller.createTodo);
 
+apiRoutes.post("/creategoal", goalscontroller.createGoal);
 
 apiRoutes.post('/authenticate', function(req, res) {
 
@@ -101,7 +104,7 @@ apiRoutes.get('/users', function(req, res) {
 
 apiRoutes.get('/currentTodos/:username', todoscontroller.getUserToDoList);
 
-
+apiRoutes.get('/goals/:username', goalscontroller.getUserGoalList);
 
 app.use('/api', apiRoutes);
 app.listen(3002);
