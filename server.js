@@ -13,6 +13,11 @@ var Todo = require('./server/models/todo');
 var todoscontroller = require('./server/controllers/todosController');
 var Goal = require('./server/models/goal');
 var goalscontroller = require('./server/controllers/goalsController');
+var Notes = require('./server/models/notes');
+var notescontroller = require('./server/controllers/notesController');
+var Journal = require('./server/models/journal');
+var journalcontroller = require('./server/controllers/journalController');
+
 //requires dependencies
 
 
@@ -36,11 +41,15 @@ app.use(morgan('dev'));
 
 var apiRoutes = express.Router();
 
-apiRoutes.post("/createuser", usercontroller.createuser);
+apiRoutes.post('/createuser', usercontroller.createuser);
 
-apiRoutes.post("/createtodo", todoscontroller.createTodo);
+apiRoutes.post('/createtodo', todoscontroller.createTodo);
 
-apiRoutes.post("/creategoal", goalscontroller.createGoal);
+apiRoutes.post('/creategoal', goalscontroller.createGoal);
+
+apiRoutes.post('/createnote', notescontroller.createNote);
+
+apiRoutes.post('/createjournalentry', journalcontroller.createJournalEntry);
 
 apiRoutes.post('/authenticate', function(req, res) {
 
@@ -105,6 +114,10 @@ apiRoutes.get('/users', function(req, res) {
 apiRoutes.get('/currentTodos/:username', todoscontroller.getUserToDoList);
 
 apiRoutes.get('/goals/:username', goalscontroller.getUserGoalList);
+
+apiRoutes.get('/currentNote/:username', notescontroller.getUserNotes);
+
+apiRoutes.get('/JournalHistory/:username', journalcontroller.getUserJournal);
 
 app.use('/api', apiRoutes);
 app.listen(3002);

@@ -1,13 +1,69 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
+var config = require('../../Config');
+
 
 class Notepad extends Component {
-  render() {
-    return (
-        <form>
-       		<textarea placeholder="Notes" />
-       	</form>
-    );
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: config.usernamePlaceholder,
+      entry: '',
+      date: Date.now(),
+      current: true,
+      list: []
+    };
   }
+
+
+entryChange(e) {
+  this.setState( {entry: e.target.value} )
 }
+
+createNoteList(){
+  var list = this.state.list;
+  return list.map(function(entry){
+    return (<li> {entry.entry} </li>)
+  })
+}
+
+updateCurrentNotes(){
+  var self = this;
+  $.ajax ({
+    method: 'GET',
+    url: config.serverRoute + '/currentNote/' + self.state.user
+  }).done(function(data) {
+    self.setState( {list: data} );
+    console.log(self.state.list);
+  })
+}
+
+createNoteEvent(){
+  $.ajax ({
+    method: 'POST',
+    url: config.serverRoute + '/createnote',
+    data: JSON.stringify(this.state),
+    contentType: 'application/json'
+  });
+}
+
+
+    render() {
+      return (
+        <div>
+          <div>
+            <ul id="noteItem">{ this.createNoteList() }</ul>
+          </div>
+          <form>
+			<textarea placeholder="A place for notes!" value={this.state.entry} onChange={this.entryChange.bind(this)} />
+			<br />
+    		<input type="button" className="textInput" id="createNote" value="Add Notes" onClick={this.createNoteEvent.bind(this)} />
+    		<br />
+            <input type="button" className="placeholderButton" id="listTasks" value="List Notes History" onClick={this.updateCurrentNotes.bind(this)} />
+          </form>
+        </div>
+      );
+    }
+  }
 
 export default Notepad;

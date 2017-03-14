@@ -2,7 +2,7 @@ var Todo = require('../models/todo')
 
 function createTodo(req, res){
 	var todo = new Todo ();
-		  // todo.username = ;
+		  todo.user = config.usernamePlaceholder;
     	todo.entry = req.body.entry;
     	todo.date = Date.now();
       todo.current = true
