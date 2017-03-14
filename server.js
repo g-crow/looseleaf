@@ -22,7 +22,6 @@ var calendarcontroller = require('./server/controllers/calendarController');
 
 //requires dependencies
 
-
 mongoose.connect(config.database);
 app.set('superSecret', config.secret);
 
@@ -101,8 +100,8 @@ function requireAuthentication(req, res, next) {
 	}
 }
 
-apiRoutes.get('/', requireAuthentication, function(req, res) {
-	res.json({ message: "We rock!" });
+apiRoutes.get('/verification', requireAuthentication, function(req, res) {
+	res.json({ success: true, message: "We rock!" });
 });
 
 apiRoutes.get('/users', function(req, res) {
