@@ -52,10 +52,8 @@ class Goals extends Component {
           <ul id="todoItem">{ this.createGoalList() }</ul>
         </div>
         <form>
-        	<ul className="goals">
-        		<li> <textarea placeholder="goal item" value={this.state.entry} onChange={this.entryChange.bind(this)} /> </li>
-        	</ul>
-          <input type="button" className="textInput" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} />
+        	<textarea placeholder="goal item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
+        	<input type="button" className="textInput" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} />
           <input type="button" className="placeholderButton" id="listGoals" value="List Goals" onClick={this.updateGoals.bind(this)} />
         </form>
       </div>
