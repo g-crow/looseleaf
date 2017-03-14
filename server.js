@@ -26,7 +26,6 @@ var calendarcontroller = require('./server/controllers/calendarController');
 mongoose.connect(config.database);
 app.set('superSecret', config.secret);
 
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", config.webpack);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -34,12 +33,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //middleware allowing translation from .json to JavaScript objects and vice versa
 app.use(morgan('dev'));
-
 
 var apiRoutes = express.Router();
 
@@ -56,7 +53,6 @@ apiRoutes.post('/createjournalentry', journalcontroller.createJournalEntry);
 apiRoutes.post('/createcalendarevent', calendarcontroller.createCalendarEvent);
 
 apiRoutes.post('/authenticate', function(req, res) {
-
 
 	//find the user
 	User.findOne({
