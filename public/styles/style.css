@@ -16,5 +16,5 @@ textarea {
 
 /* component divs */
 #goals, #journal, #notepad, #todo, #calendar {
-	padding: 10px;
+	margin: 2px;
 }

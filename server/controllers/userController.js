@@ -9,7 +9,6 @@ exports.createuser = function (req, res){
     	user.password = req.body.password;
     	user.confirmPass = req.body.confirmPass;
 
-
   user.save(function(err) {
     if(err) throw err;
 

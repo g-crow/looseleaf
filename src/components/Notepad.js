@@ -7,7 +7,7 @@ class Notepad extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      user: config.usernamePlaceholder,
+      username: config.usernamePlaceholder,
       entry: '',
       date: Date.now(),
       current: true,

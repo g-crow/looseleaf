@@ -1,8 +1,9 @@
 var Calendar = require('../models/calendar')
+var config = require('../../Config');
 
 function createCalendarEvent(req, res){
 	var calendar = new Calendar ();
-		  // calendar.user = config.usernamePlaceholder;
+		  calendar.username = config.usernamePlaceholder;
     	calendar.entry = req.body.entry;
     	calendar.date = Date.now();
       calendar.current = true

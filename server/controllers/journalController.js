@@ -1,8 +1,9 @@
 var Journal = require('../models/journal')
+var config = require('../../Config');
 
 function createJournalEntry(req, res){
 	var journalentry = new Journal ();
-		  // note.user = config.usernamePlaceholder;
+		  note.username = config.usernamePlaceholder;
     	journalentry.entry = req.body.entry;
     	journalentry.date = Date.now();
       journalentry.current = true

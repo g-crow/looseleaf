@@ -1,8 +1,9 @@
 var Notes = require('../models/notes')
+var config = require('../../Config');
 
 function createNote(req, res){
 	var note = new Notes ();
-		  // note.user = config.usernamePlaceholder;
+		  note.username = config.usernamePlaceholder;
     	note.entry = req.body.entry;
     	note.date = Date.now();
       note.current = true
