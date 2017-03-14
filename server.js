@@ -17,6 +17,8 @@ var Notes = require('./server/models/notes');
 var notescontroller = require('./server/controllers/notesController');
 var Journal = require('./server/models/journal');
 var journalcontroller = require('./server/controllers/journalController');
+var Calendar = require('./server/models/calendar');
+var calendarcontroller = require('./server/controllers/calendarController');
 
 //requires dependencies
 
@@ -50,6 +52,8 @@ apiRoutes.post('/creategoal', goalscontroller.createGoal);
 apiRoutes.post('/createnote', notescontroller.createNote);
 
 apiRoutes.post('/createjournalentry', journalcontroller.createJournalEntry);
+
+apiRoutes.post('/createcalendarevent', calendarcontroller.createCalendarEvent);
 
 apiRoutes.post('/authenticate', function(req, res) {
 
@@ -118,6 +122,8 @@ apiRoutes.get('/goals/:username', goalscontroller.getUserGoalList);
 apiRoutes.get('/currentNote/:username', notescontroller.getUserNotes);
 
 apiRoutes.get('/JournalHistory/:username', journalcontroller.getUserJournal);
+
+apiRoutes.get('/currentCalendar/:username', calendarcontroller.getUserCalendar);
 
 app.use('/api', apiRoutes);
 app.listen(3002);
