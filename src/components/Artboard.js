@@ -14,7 +14,6 @@ class Artboard extends Component {
           <Notepad></Notepad>
           <Todo></Todo>
           <Calendar></Calendar>
-        </div>
     	</div>
 
     );
