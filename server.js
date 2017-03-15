@@ -98,7 +98,8 @@ function requireAuthentication(req, res, next) {
 }
 
 apiRoutes.get('/verification', requireAuthentication, function(req, res) {
-	res.json({ success: true});
+  res.json({ success: true, username: req.decoded['_doc'].username });
+  console.log(req.decoded['_doc'].username);
 });
 
 apiRoutes.get('/users', function(req, res) {

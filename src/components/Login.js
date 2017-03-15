@@ -29,7 +29,6 @@ class Login extends Component{
     }).done(function(success) {
         document.cookie=success.token
         browserHistory.push('/Artboard')
-  
       })
     }
 

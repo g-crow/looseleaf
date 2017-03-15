@@ -9,6 +9,7 @@ export default React.createClass({
         <nav>
           <ul role="nav">
             <li><Link to="/login" activeClassName="active">Login</Link></li>
+            <li><Link to="/logout" activeClassName="active">Logout</Link></li>
             <li><Link to="/signup" activeClassName="active">Sign Up</Link></li>
             <li><Link to="/artboard" activeClassName="active">Artboard</Link></li>
             <li><Link to="/calendar" activeClassName="active">Calendar</Link></li>

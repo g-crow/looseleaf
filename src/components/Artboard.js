@@ -20,17 +20,19 @@ class Artboard extends Component {
   componentWillMount() {
     if(!document.cookie){
       browserHistory.push('/login')
-    }
+    } /*else {
+      this.setState
+    }*/
   }
 
   render() {
     return (
     	<div id="artboard">
-          <Goals></Goals>
-          <Journal></Journal>
-          <Notepad></Notepad>
-          <Todo></Todo>
-          <Calendar></Calendar>
+          <Goals />
+          <Journal />
+          <Notepad />
+          <Todo />
+          <Calendar />
     	</div>
     );
   }
