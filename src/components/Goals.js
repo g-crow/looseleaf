@@ -6,7 +6,7 @@ class Goals extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // username: '',
+      username: '',
       entry: '',
       date: Date.now(),
       current: true,
@@ -14,8 +14,12 @@ class Goals extends Component {
     };
   }
 
+
   entryChange(e) {
     this.setState( {entry: e.target.value} )
+    var un = this.props.username()
+    this.setState( {username: un})
+
   }
 
   createGoalList(){
@@ -36,7 +40,9 @@ class Goals extends Component {
     })
   }
 
+
   createGoalEvent(){
+    console.log(this.state)
     $.ajax ({
       method: 'POST',
       url: config.serverRoute + '/creategoal',

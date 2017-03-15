@@ -36,8 +36,12 @@ export default class App extends Component{
     return !this.state.token && this.state.cookieLoaded
   }
 
+  giveUsername(){
+    return this.state.username
+  }
+
   render() {
-    const childProps = {...this.state, login: this.login.bind(this), logout: this.logout.bind(this), notLoggedIn: this.notLoggedIn.bind(this) }
+    const childProps = {...this.state, login: this.login.bind(this), logout: this.logout.bind(this), notLoggedIn: this.notLoggedIn.bind(this), username: this.giveUsername.bind(this) }
     return (
       <div>
         <h1>Looseleaf</h1>

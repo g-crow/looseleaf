@@ -28,11 +28,11 @@ class Artboard extends Component {
   render() {
     return (
     	<div id="artboard">
-          <Goals />
-          <Journal />
-          <Notepad />
-          <Todo />
-          <Calendar />
+          <Goals username={this.props.username.bind(this)}/>
+          <Journal username={this.props.username.bind(this)}/>
+          <Notepad username={this.props.username.bind(this)}/>
+          <Todo username={this.props.username.bind(this)}/>
+          <Calendar username={this.props.username.bind(this)}/>
     	</div>
     );
   }
