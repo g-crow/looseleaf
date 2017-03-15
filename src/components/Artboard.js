@@ -4,9 +4,9 @@ import Journal from './Journal';
 import Notepad from './Notepad';
 import Todo from './Todo';
 import Calendar from './Calendar';
-import $ from 'jquery';
+// import $ from 'jquery';
 import {browserHistory} from 'react-router'
-var config = require('../../Config');
+// var config = require('../../Config');
 
 class Artboard extends Component {
 
@@ -18,22 +18,10 @@ class Artboard extends Component {
   }
 
   componentWillMount() {
-   
-   $.ajax ({
-      method: 'GET',
-      url: config.serverRoute + '/verification',
-      error: function(error){
-          console.log('eeeerrrrorooor')
-          browserHistory.push('/login')
-        },
-      success: function(success) {
-        this.setState( {access: true} )
-      }
-      }).done(function(data){
-        console.log('we rock harder than granite', data)
-      })
-} 
-
+    if(!document.cookie){
+      browserHistory.push('/login')
+    }
+  }
 
   render() {
     return (
@@ -44,7 +32,6 @@ class Artboard extends Component {
           <Todo></Todo>
           <Calendar></Calendar>
     	</div>
-
     );
   }
 }

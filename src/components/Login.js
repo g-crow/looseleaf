@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
+import {browserHistory} from 'react-router'
 var config = require('../../Config');
 
 class Login extends Component{
@@ -25,11 +26,13 @@ class Login extends Component{
       url: config.serverRoute + '/authenticate',
       data: JSON.stringify(this.state),
       contentType: 'application/json'
-      }).then(function (sucess) {
-        console.log(sucess);
+    }).done(function(success) {
+        document.cookie=success.token
+        browserHistory.push('/Artboard')
+  
       })
     }
-    
+
   render(){
     return(
       <div id="login">
