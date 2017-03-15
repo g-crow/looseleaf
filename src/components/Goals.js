@@ -6,7 +6,7 @@ class Goals extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: config.usernamePlaceholder,
+      // username: '',
       entry: '',
       date: Date.now(),
       current: true,

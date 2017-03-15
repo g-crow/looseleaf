@@ -1,9 +1,9 @@
-var Goal = require('../models/goal')
+var Goal = require('../models/goal');
 var config = require('../../Config');
 
 function createGoal(req, res){
 	var goal = new Goal ();
-		  goal.username = config.usernamePlaceholder;
+		  // goal.username = App.state.username;
     	goal.entry = req.body.entry;
     	goal.date = Date.now();
       goal.current = true

@@ -21,13 +21,14 @@ class Login extends Component{
   };
 
    validateUser(){
+     var self = this;
     $.ajax ({
       method: 'POST',
       url: config.serverRoute + '/authenticate',
       data: JSON.stringify(this.state),
       contentType: 'application/json'
     }).done(function(success) {
-        document.cookie=success.token
+        self.props.login(success.token, self.state.username)
         browserHistory.push('/Artboard')
       })
     }

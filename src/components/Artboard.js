@@ -18,7 +18,7 @@ class Artboard extends Component {
   }
 
   componentWillMount() {
-    if(!document.cookie){
+    if(this.props.notLoggedIn()){
       browserHistory.push('/login')
     } /*else {
       this.setState
