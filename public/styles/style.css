@@ -14,6 +14,11 @@ textarea {
 	resize: inline;
 }
 
+.tester1 {
+	border-style: solid;
+	border-color: black;
+}
+
 /* component divs */
 #goals, #journal, #notepad, #todo, #calendar {
 	margin: 2px;
