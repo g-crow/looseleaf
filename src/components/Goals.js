@@ -33,7 +33,7 @@ class Goals extends Component {
     var self = this;
     $.ajax ({
       method: 'GET',
-      url: config.serverRoute + '/goals/' + self.state.user
+      url: config.serverRoute + '/goals/' + self.state.username
     }).done(function(data) {
       self.setState( {list: data} );
       console.log(self.state.list);
@@ -55,7 +55,7 @@ class Goals extends Component {
     return (
       <div id="goals">
         <div>
-          <ul id="todoItem">{ this.createGoalList() }</ul>
+          <ul id="goalItem">{ this.createGoalList() }</ul>
         </div>
         <form>
         	<textarea placeholder="goal item" value={this.state.entry} onChange={this.entryChange.bind(this)} />

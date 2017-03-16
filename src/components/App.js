@@ -49,13 +49,8 @@ export default class App extends Component{
           <ul role="nav">
             {!this.state.token ? <li><Link to="/login" activeClassName="active">Login</Link></li>
                                : <li><Link to="/login" onClick={this.logout.bind(this)} activeClassName="active">Logout</Link></li>}
-            <li><Link to="/signup" activeClassName="active">Sign Up</Link></li>
+            {!this.state.token ? <li><Link to="/signup" activeClassName="active">Sign Up</Link></li> : ""}
             <li><Link to="/artboard" activeClassName="active">Artboard</Link></li>
-            <li><Link to="/calendar" activeClassName="active">Calendar</Link></li>
-            <li><Link to="/goals" activeClassName="active">Goals</Link></li>
-            <li><Link to="/todo" activeClassName="active">Todo</Link></li>
-            <li><Link to="/journal" activeClassName="active">Journal</Link></li>
-            <li><Link to="/notepad" activeClassName="active">Notepad</Link></li>
           </ul>
       </nav>
 
@@ -64,3 +59,9 @@ export default class App extends Component{
     )
   }
 }
+/*
+<li><Link to="/calendar" activeClassName="active">Calendar</Link></li>
+<li><Link to="/goals" activeClassName="active">Goals</Link></li>
+<li><Link to="/todo" activeClassName="active">Todo</Link></li>
+<li><Link to="/journal" activeClassName="active">Journal</Link></li>
+<li><Link to="/notepad" activeClassName="active">Notepad</Link></li> */

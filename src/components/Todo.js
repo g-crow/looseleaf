@@ -29,7 +29,7 @@ updateCurrentTodo(){
   var self = this;
   $.ajax ({
     method: 'GET',
-    url: config.serverRoute + '/currentTodos/' + self.state.user
+    url: config.serverRoute + '/currentTodos/' + self.state.username
   }).done(function(data) {
     self.setState( {list: data} );
     console.log(self.state.list);
