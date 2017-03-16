@@ -44,13 +44,15 @@ export default class App extends Component{
     const childProps = {...this.state, login: this.login.bind(this), logout: this.logout.bind(this), notLoggedIn: this.notLoggedIn.bind(this), username: this.giveUsername.bind(this) }
     return (
       <div>
-        <h1>Looseleaf</h1>
+        <h1>Looseleaf-tester</h1>
         <nav>
           <ul role="nav">
             {!this.state.token ? <li><Link to="/login" activeClassName="active">Login</Link></li>
                                : <li><Link to="/login" onClick={this.logout.bind(this)} activeClassName="active">Logout</Link></li>}
             {!this.state.token ? <li><Link to="/signup" activeClassName="active">Sign Up</Link></li> : ""}
             <li><Link to="/artboard" activeClassName="active">Artboard</Link></li>
+            <li><Link to="/myFirstGrid" activeClassName="active">My First Grid</Link></li>
+            <li><Link to="/AddRemove" activeClassName="active">Add Remove</Link></li>
           </ul>
       </nav>
 
