@@ -30,13 +30,13 @@ class Goals extends Component {
   }
 
   updateGoals(){
-    var self = this;
+    var self = this
     $.ajax ({
       method: 'GET',
-      url: config.serverRoute + '/goals/' + self.state.username
+      url: config.serverRoute + '/goals/' + self.props.username()
     }).done(function(data) {
       self.setState( {list: data} );
-      console.log(self.state.list);
+      console.log( {list: data } );
     })
   }
 

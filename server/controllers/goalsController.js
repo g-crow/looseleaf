@@ -19,7 +19,7 @@ function createGoal(req, res){
 
 function getUserGoalList(req, res) {
   console.log(req.params.username)
-  Goal.find({user: req.params.username}, function(err, goals) {
+  Goal.find({username: req.params.username}, function(err, goals) {
     res.json(goals);
   });
 };
