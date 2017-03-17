@@ -12,6 +12,7 @@ nav li {
 /* compontent elements */
 textarea {
 	resize: inline;
+	width: 95%;
 }
 
 .tester1 {
