@@ -7,7 +7,7 @@ class Journal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: config.usernamePlaceholder,
+      username: '',
       entry: '',
       date: Date.now(),
       current: true,
@@ -18,6 +18,8 @@ class Journal extends Component {
 
 entryChange(e) {
   this.setState( {entry: e.target.value} )
+  var un = this.props.username()
+  this.setState( {username:un} )
 }
 
 createJournalHistory(){
@@ -31,10 +33,9 @@ updateJournalHistory(){
   var self = this;
   $.ajax ({
     method: 'GET',
-    url: config.serverRoute + '/JournalHistory/' + self.state.user
+    url: config.serverRoute + '/JournalHistory/' + self.props.username()
   }).done(function(data) {
     self.setState( {list: data} );
-    console.log(self.state.list);
   })
 }
 
