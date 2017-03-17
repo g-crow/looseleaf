@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 var config = require('../../config');
 
-
 class Journal extends Component {
   constructor(props) {
     super(props)
@@ -14,7 +13,6 @@ class Journal extends Component {
       list: []
     };
   }
-
 
 entryChange(e) {
   this.setState( {entry: e.target.value} )
@@ -47,7 +45,6 @@ createJournalEntry(){
     contentType: 'application/json'
   });
 }
-
 
     render() {
       return (

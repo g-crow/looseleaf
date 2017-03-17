@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 var config = require('../../config');
 
-
 class Notepad extends Component {
   constructor(props) {
     super(props)
@@ -14,7 +13,6 @@ class Notepad extends Component {
       list: []
     };
   }
-
 
 entryChange(e) {
   this.setState( {entry: e.target.value} )
@@ -47,7 +45,6 @@ createNoteEvent(){
     contentType: 'application/json'
   });
 }
-
 
     render() {
       return (

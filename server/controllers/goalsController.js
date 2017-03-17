@@ -1,5 +1,5 @@
 var Goal = require('../models/goal');
-var config = require('../../Config');
+var config = require('../../config');
 
 function createGoal(req, res){
 	console.log(req.body)

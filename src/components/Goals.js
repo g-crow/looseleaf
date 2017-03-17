@@ -14,7 +14,6 @@ class Goals extends Component {
     };
   }
 
-
   entryChange(e) {
     this.setState( {entry: e.target.value} )
     var un = this.props.username()

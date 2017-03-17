@@ -5,7 +5,6 @@ import { Resizable, ResizableBox } from 'react-resizable';
 
 export default class MyFirstGrid extends Component {
 
-
   constructor(props) {
     super(props)
     this.state = {
@@ -22,7 +21,6 @@ export default class MyFirstGrid extends Component {
   onClick = () => {
     this.setState({width: 100, height: 100, message: "you're cool"});
   };
-
 
   render() {
   return (
