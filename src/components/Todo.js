@@ -6,7 +6,7 @@ class Todo extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: config.usernamePlaceholder,
+      username: '',
       entry: '',
       date: Date.now(),
       current: true,
@@ -16,6 +16,8 @@ class Todo extends Component {
 
 entryChange(e) {
   this.setState( {entry: e.target.value} )
+  var un = this.props.username()
+  this.setState( {username: un})
 }
 
 createList(){
@@ -29,10 +31,9 @@ updateCurrentTodo(){
   var self = this;
   $.ajax ({
     method: 'GET',
-    url: config.serverRoute + '/currentTodos/' + self.state.username
+    url: config.serverRoute + '/currentTodos/' + self.props.username()
   }).done(function(data) {
     self.setState( {list: data} );
-    console.log(self.state.list);
   })
 }
 

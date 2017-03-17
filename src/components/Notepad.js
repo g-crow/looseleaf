@@ -7,7 +7,7 @@ class Notepad extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: config.usernamePlaceholder,
+      username: '',
       entry: '',
       date: Date.now(),
       current: true,
@@ -18,6 +18,8 @@ class Notepad extends Component {
 
 entryChange(e) {
   this.setState( {entry: e.target.value} )
+  var un = this.props.username()
+  this.setState( {username: un})
 }
 
 createNoteList(){
@@ -31,10 +33,9 @@ updateCurrentNotes(){
   var self = this;
   $.ajax ({
     method: 'GET',
-    url: config.serverRoute + '/currentNote/' + self.state.user
+    url: config.serverRoute + '/currentNote/' + self.props.username()
   }).done(function(data) {
     self.setState( {list: data} );
-    console.log(self.state.list);
   })
 }
 
