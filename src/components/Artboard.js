@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // import { Resizable, ResizableBox } from 'react-resizable';
-import {Responsive, WidthProvider} from 'react-grid-layout';
-const ReactGridLayout = WidthProvider(Responsive);
+//import {Responsive, WidthProvider} from 'react-grid-layout';
+//const ReactGridLayout = WidthProvider(Responsive);
+var ReactGridLayout = require('react-grid-layout');
 import Goals from './Goals';
 import Journal from './Journal';
 import Notepad from './Notepad';
@@ -27,13 +28,17 @@ class Artboard extends Component {
   }
 
   saveLayoutEvent() {
-  $.ajax ({
-    method: 'PUT',
-    url: config.serverRoute + '/savelayout',
-    data: JSON.stringify(this.state),
-    contentType: 'application/json'
-  });
-}
+    $.ajax ({
+      method: 'PUT',
+      url: config.serverRoute + '/savelayout',
+      data: JSON.stringify(this.state),
+      contentType: 'application/json'
+    });
+  }
+
+  onLayoutChange(layout){
+    console.log('NEW LAYOUT', layout)
+  }
 
   render() {
     var layouts = [
@@ -45,18 +50,14 @@ class Artboard extends Component {
     ];
     return (
     	<div id="artboard">
-        <ReactGridLayout className="layout" layouts={layouts}
-      breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-      cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}>
+        <ReactGridLayout className="layout" layout={layouts} onLayoutChange={this.onLayoutChange}
+          cols={12} rowHeight={30} width={1200}>
           <div key={"1"}><Goals username={this.props.username.bind(this)}/></div>
           <div key={"2"}><Journal username={this.props.username.bind(this)}/></div>
           <div key={"3"}><Notepad username={this.props.username.bind(this)}/></div>
           <div key={"4"}><Todo username={this.props.username.bind(this)}/></div>
           <div key={"5"}><Calendar username={this.props.username.bind(this)}/></div>
         </ReactGridLayout>
-        <form>
-          <input type="button" id="saveLayoutButton" value="Save Default Layout" onClick={this.saveLayoutEvent.bind(this)} />
-        </form>
     	</div>
     );
   }
