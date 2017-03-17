@@ -6,8 +6,6 @@ import { Router, Route, browserHistory } from 'react-router';
 import Artboard from './components/Artboard';
 import Signup from './components/Signup';
 import Login from './components/Login';
-import MyFirstGrid from './components/MyFirstGrid';
-import AddRemove from './components/AddRemove';
 // import Calendar from './components/Calendar';
 // import Goals from './components/Goals';
 // import Journal from './components/Journal';
@@ -20,8 +18,6 @@ render((
       <Route path="/artboard" component={Artboard} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
-      <Route path="/myFirstGrid" component={MyFirstGrid} />
-      <Route path="/AddRemove" component={AddRemove} />      
     </Route>
   </Router>
 ), document.getElementById('root'))

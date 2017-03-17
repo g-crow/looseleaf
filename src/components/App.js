@@ -51,8 +51,6 @@ export default class App extends Component{
                                : <li><Link to="/login" onClick={this.logout.bind(this)} activeClassName="active">Logout</Link></li>}
             {!this.state.token ? <li><Link to="/signup" activeClassName="active">Sign Up</Link></li> : ""}
             <li><Link to="/artboard" activeClassName="active">Artboard</Link></li>
-            <li><Link to="/myFirstGrid" activeClassName="active">My First Grid</Link></li>
-            <li><Link to="/AddRemove" activeClassName="active">Add Remove</Link></li>
           </ul>
       </nav>
 

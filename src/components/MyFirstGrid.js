@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import ReactGridLayout from 'react-grid-layout'
 import { Resizable, ResizableBox } from 'react-resizable';
 // import {Responsive, WidthProvider} from 'react-grid-layout';
-// const ResponsiveReactGridLayout = WidthProvider(Responsive);
-// var ResponsiveReactGridLayout = require('react-grid-layout').Responsive;
 
 export default class MyFirstGrid extends Component {
 
@@ -16,7 +14,7 @@ export default class MyFirstGrid extends Component {
       message: ""
     };
   }
-  
+
   onResize = (event, {element, size}) => {
     this.setState({width: size.width, height: size.height});
   };
