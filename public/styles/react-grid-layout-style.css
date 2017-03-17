@@ -5,6 +5,8 @@
 .react-grid-item {
   transition: all 200ms ease;
   transition-property: left, top;
+  border-style: solid;
+  border-color:black;
 }
 .react-grid-item.cssTransforms {
   transition-property: transform;
