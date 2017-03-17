@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-var config = require('../../Config');
+import {browserHistory} from 'react-router';
+var config = require('../../config');
 class Signup extends Component {
 
   constructor(props) {
@@ -36,18 +37,19 @@ class Signup extends Component {
     this.setState ( {confirmPass: e.target.value} )
   }
 
-
-
   createUserEvent(){
 
     if (this.state.password === this.state.confirmPass) {
-
-    $.ajax ({
-      method: 'POST',
-      url: config.serverRoute + '/createuser',
-      data: JSON.stringify(this.state),
-      contentType: 'application/json'
-    });
+      var self=this;
+      $.ajax ({
+        method: 'POST',
+        url: config.serverRoute + '/createuser',
+        data: JSON.stringify(this.state),
+        contentType: 'application/json'
+      }).done(function(success) {
+        self.props.login(success.token, self.state.username)
+        browserHistory.push('/Artboard')
+      });
     } else {
       this.setState ({test: true})
     }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import {browserHistory} from 'react-router'
-var config = require('../../Config');
+var config = require('../../config');
 
 class Login extends Component{
 

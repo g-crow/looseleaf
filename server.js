@@ -53,7 +53,7 @@ apiRoutes.post('/createcalendarevent', calendarcontroller.createCalendarEvent);
 
 apiRoutes.post('/authenticate', function(req, res) {
 
-	//find the user
+	 //find the user
 	User.findOne({
 		username: req.body.username
 	}, function(err, user) {
@@ -66,14 +66,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 			if (user.password != req.body.password) {
 				res.json({ success: false, message: "Authentication failed. Wrong password." });
 			} else {
-				var token = jwt.sign(user, app.get('superSecret'), {
-					expiresIn: 1440 //expires in 24 hours
-				});
-				res.json({
-					success: true,
-					message: 'Enjoy your token!',
-					token: token
-				});
+				generateToken(user, res);
 			}
 		}
 	});
@@ -96,7 +89,16 @@ function requireAuthentication(req, res, next) {
 		return res.status(403).json({error: "No token found"});
 	};
 }
-
+function generateToken(user, res) {
+  var token = jwt.sign(user, app.get('superSecret'), {
+    expiresIn: 1440 //expires in 24 hours
+  });
+  res.json({
+    success: true,
+    message: 'Enjoy your token!',
+    token: token
+  });
+}
 apiRoutes.get('/verification', requireAuthentication, function(req, res) {
   res.json({ success: true, username: req.decoded['_doc'].username });
   console.log(req.decoded['_doc'].username);

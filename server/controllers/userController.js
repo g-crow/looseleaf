@@ -1,4 +1,17 @@
 var User = require('../models/user')
+var config = require('../../config');
+var jwt = require('jsonwebtoken');
+
+function generateToken(user, res) {
+  var token = jwt.sign(user, config.secret, {
+    expiresIn: 1440 //expires in 24 hours
+  });
+  res.json({
+    success: true,
+    message: 'Enjoy your token!',
+    token: token
+  });
+}
 
 exports.createuser = function (req, res){
 	var user = new User ();
@@ -10,9 +23,8 @@ exports.createuser = function (req, res){
     	user.confirmPass = req.body.confirmPass;
 
   user.save(function(err) {
-    if(err) throw err;
-
+    if(err) console.log(err.message);
     console.log('User saved!');
-    res.json({ success: true });
+		generateToken(user, res);
   });
 }

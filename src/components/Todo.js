@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-var config = require('../../Config');
+var config = require('../../config');
 
 class Todo extends Component {
   constructor(props) {
