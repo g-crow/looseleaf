@@ -37,12 +37,16 @@ nav li, nav li a {
 	margin: 2px;
 }
 
+#login, #signup {
+	width: 60%;
+}
+
 #goals {
 	background-color: #a64a22;
 }
 
 #looseleaf-logo {
-
+	padding: 10px 0;
 }
 
 /* component elements */
@@ -55,6 +59,8 @@ textarea {
 }
 
 .button {
+	float: right;
+	clear: both;
 	background-color: #e3aee8;
 	border: 1px solid #631507;
 	border-radius: 8px;
@@ -67,4 +73,9 @@ textarea {
 
 .button:hover {
 	box-shadow: 0 8px 16px 0 #423827;
+}
+
+#login .textField, #signup .textField {
+	margin: 5px 15px;
+	line-height: 25px;
 }

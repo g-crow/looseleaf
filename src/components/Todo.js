@@ -54,8 +54,10 @@ createTodoEvent(){
           </div>
           <form>
           	<input type="text" placeholder="to do item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
-            <input type="button" className="button" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
-            <input type="button" className="button" id="listTasks" value="List Tasks" onClick={this.updateCurrentTodo.bind(this)} />
+            <div class="buttons">
+              <input type="button" className="button" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
+              <input type="button" className="button" id="listTasks" value="List Tasks" onClick={this.updateCurrentTodo.bind(this)} />
+            </div>
           </form>
         </div>
       );
