@@ -10,14 +10,14 @@ class Todo extends Component {
       entry: '',
       date: Date.now(),
       current: true,
-      list: []
+      list: [],
     };
   }
 
 entryChange(e) {
   this.setState( {entry: e.target.value} )
   var un = this.props.username()
-  this.setState( {username: un})
+  this.setState({username: un})
 }
 
 createList(){
@@ -43,7 +43,7 @@ createTodoEvent(){
     url: config.serverRoute + '/createtodo',
     data: JSON.stringify(this.state),
     contentType: 'application/json'
-  });
+  }).done(this.setState({ entry:'' })) //clear form after entry
 }
 
     render() {

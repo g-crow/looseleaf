@@ -43,7 +43,7 @@ createNoteEvent(){
     url: config.serverRoute + '/createnote',
     data: JSON.stringify(this.state),
     contentType: 'application/json'
-  });
+  }).done(this.setState({ entry:'' }));
 }
 
     render() {
