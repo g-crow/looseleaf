@@ -42,21 +42,21 @@ class Artboard extends Component {
 
   render() {
     var layouts = [
-      {i: '1', x: 0, y: 0, w: 2, h: 3},
-      {i: '2', x: 2, y: 0, w: 2, h: 3},
-      {i: '3', x: 4, y: 0, w: 2, h: 9},
-      {i: '4', x: 0, y: 3, w: 4, h: 3},
-      {i: '5', x: 0, y: 6, w: 4, h: 3 }
+      {i: '1', x: 0, y: 0, w: 3, h: 3},
+      {i: '2', x: 3, y: 0, w: 3, h: 3},
+      {i: '3', x: 6, y: 0, w: 3, h: 9},
+      {i: '4', x: 0, y: 3, w: 6, h: 3},
+      {i: '5', x: 0, y: 6, w: 6, h: 3 }
     ];
     return (
     	<div id="artboard">
         <ReactGridLayout className="layout" layout={layouts} onLayoutChange={this.onLayoutChange}
           cols={12} rowHeight={30} width={1200}>
-          <div key={"1"}><Goals username={this.props.username.bind(this)}/></div>
-          <div key={"2"}><Journal username={this.props.username.bind(this)}/></div>
-          <div key={"3"}><Notepad username={this.props.username.bind(this)}/></div>
-          <div key={"4"}><Todo username={this.props.username.bind(this)}/></div>
-          <div key={"5"}><Calendar username={this.props.username.bind(this)}/></div>
+          <div key={"1"} className="comps" id="goals"><Goals username={this.props.username.bind(this)}/></div>
+          <div key={"3"} className="comps" className="paper" id="journal"><Journal username={this.props.username.bind(this)}/></div>
+          <div key={"4"} className="comps" id="notepad"><Notepad username={this.props.username.bind(this)}/></div>
+          <div key={"2"} className="comps" id="todo"><Todo username={this.props.username.bind(this)}/></div>
+          <div key={"5"} className="comps" id="calendar"><Calendar username={this.props.username.bind(this)}/></div>
         </ReactGridLayout>
     	</div>
     );

@@ -54,8 +54,8 @@ createCalendarEvent(){
           </div>
           <form>
           	<input type="text" placeholder="What's coming up?" value={this.state.entry} onChange={this.entryChange.bind(this)} />
-            <input type="button" className="textInput" id="createTodo" value="Add New Calendar Item" onClick={this.createCalendarEvent.bind(this)} />
-            <input type="button" className="placeholderButton" id="listTasks" value="List Upcoming Calendar Items" onClick={this.updateCurrentCalendar.bind(this)} />
+            <input type="button" className="button" id="createTodo" value="Add New Calendar Item" onClick={this.createCalendarEvent.bind(this)} />
+            <input type="button" className="button" id="listTasks" value="List Upcoming Calendar Items" onClick={this.updateCurrentCalendar.bind(this)} />
           </form>
         </div>
       );

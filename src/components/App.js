@@ -44,7 +44,7 @@ export default class App extends Component{
     const childProps = {...this.state, login: this.login.bind(this), logout: this.logout.bind(this), notLoggedIn: this.notLoggedIn.bind(this), username: this.giveUsername.bind(this) }
     return (
       <div>
-        <h1>Looseleaf</h1>
+        <div id="looseleaf-logo"><img src={require('../../public/images/LL-logo.png')} /></div>
         <nav>
           <ul role="nav">
             {!this.state.token ? <li><Link to="/login" activeClassName="active">Login</Link></li>

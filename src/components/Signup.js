@@ -65,7 +65,7 @@ class Signup extends Component {
       			<input type="password" className="textInput" id="password" placeholder="Password" value={this.state.password} onChange={this.passwordChange.bind(this)} />
       			<input type="password" className="textInput" id="confirmPassword" placeholder="Confirm password" value={this.state.confirmPass} onChange={this.confirmPassword.bind(this)} />
       			<input type="email" className="textInput" id="emailInput" placeholder="Email address" value={this.state.email} onChange={this.emailChange.bind(this)} />
-            <input type="button" className="textInput" id="createAccount" value="Create account" onClick={this.createUserEvent.bind(this)} />
+            <input type="button" className="button" id="createAccount" value="Create account" onClick={this.createUserEvent.bind(this)} />
       		</form>
         { this.state.test ? (<div id="wrongPassword">Sorry, password doesn't match. Try again.</div>) : (<div />) }
     		<div className="underForm">Already have an account?</div>

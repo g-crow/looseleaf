@@ -55,9 +55,9 @@ createNoteEvent(){
           <form>
 			<textarea placeholder="A place for notes!" value={this.state.entry} onChange={this.entryChange.bind(this)} />
 			<br />
-    		<input type="button" className="textInput" id="createNote" value="Add Notes" onClick={this.createNoteEvent.bind(this)} />
+    		<input type="button" className="button" id="createNote" value="Add Notes" onClick={this.createNoteEvent.bind(this)} />
     		<br />
-            <input type="button" className="placeholderButton" id="listTasks" value="List Notes History" onClick={this.updateCurrentNotes.bind(this)} />
+            <input type="button" className="button" id="listTasks" value="List Notes History" onClick={this.updateCurrentNotes.bind(this)} />
           </form>
         </div>
       );

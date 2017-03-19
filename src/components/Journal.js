@@ -48,16 +48,16 @@ createJournalEntry(){
 
     render() {
       return (
-        <div id="journal">
+        <div className="paper-content">
           <div>
             <ul id="journalHistory">{ this.createJournalHistory() }</ul>
           </div>
           <form>
-			<textarea placeholder="Journal space!" value={this.state.entry} onChange={this.entryChange.bind(this)} />
-			<br />
-    		<input type="button" className="textInput" id="createJournalEntry" value="Add Journal Entry" onClick={this.createJournalEntry.bind(this)} />
-    		<br />
-            <input type="button" className="placeholderButton" id="listTasks" value="List Journal History" onClick={this.updateJournalHistory.bind(this)} />
+      			<textarea placeholder="Journal space!" value={this.state.entry} onChange={this.entryChange.bind(this)} />
+      			<br />
+        		<input type="button" className="button" id="createJournalEntry" value="Add Journal Entry" onClick={this.createJournalEntry.bind(this)} />
+        		<br />
+            <input type="button" className="button" id="listTasks" value="List Journal History" onClick={this.updateJournalHistory.bind(this)} />
           </form>
         </div>
       );
