@@ -37,14 +37,14 @@ class Login extends Component{
     return(
       <div id="login">
           <form>
-      			<input type="text" className="button" placeholder="Enter username"
+      			<input type="text" className="textField" placeholder="Enter username"
             value={this.state.username} onChange={this.usernameChange.bind(this)} />
-      			<input type="password" className="password" placeholder="Enter password"
+      			<input type="password" className="textField" placeholder="Enter password"
             value={this.state.password} onChange={this.passwordChange.bind(this)} />
-          <input type="button" className="button" value="Login" onClick={this.validateUser.bind(this)} />
-      		</form>
-
-      		<div className="underForm">Sign Up Here</div>
+          <div class="buttons">
+            <input type="button" className="button" value="Login" onClick={this.validateUser.bind(this)} />
+          </div>
+          </form>
       </div>
     );
   }
