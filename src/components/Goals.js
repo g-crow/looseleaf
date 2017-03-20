@@ -21,13 +21,7 @@ class Goals extends Component {
 
   }
 
-  createGoalList(){
-    var list = this.state.list;
-    return list.map(function(entry){
-      return (<li> {entry.entry} </li>)
-    })
-  }
-
+comp
   updateGoals(){
     var self = this
     $.ajax ({
@@ -38,6 +32,15 @@ class Goals extends Component {
       console.log( {list: data } );
     })
   }
+
+
+  createGoalList(){
+    var list = this.state.list;
+    return list.map(function(entry){
+      return (<li> {entry.entry} </li>)
+    })
+  }
+
 
 
   createGoalEvent(){

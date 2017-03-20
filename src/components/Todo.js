@@ -6,7 +6,7 @@ class Todo extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
+      username: this.props.username(),
       entry: '',
       date: Date.now(),
       current: true,
@@ -23,9 +23,13 @@ entryChange(e) {
 createList(){
   var list = this.state.list;
   return list.map(function(entry){
-    return (<li> {entry.entry} </li>)
+    return (<span id="todoItems">
+      <input type="checkbox" name="todoitem" value="incomplete" /> {entry.entry}
+      <br />
+          </span>)
   })
 }
+
 
 updateCurrentTodo(){
   var self = this;
@@ -46,11 +50,14 @@ createTodoEvent(){
   }).done(this.setState({ entry:'' })) //clear form after entry
 }
 
+
+
+
     render() {
       return (
         <div id="todo">
           <div>
-            <ol id="todoItem">{ this.createList() }</ol>
+                <span id="todoItems">{this.createList()}</span>
           </div>
           <form>
           	<input type="text" placeholder="to do item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
