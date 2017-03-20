@@ -20,6 +20,12 @@ function getUserToDoList(req, res) {
   });
 };
 
+function taskComplete(req, res) {
+	Todo.find({entry: req.params.entry}, function(err, todos) {
+		res.json(todos);
+	})
+}
+
 module.exports = {
   createTodo,
   getUserToDoList
