@@ -52,11 +52,11 @@ class Artboard extends Component {
     	<div id="artboard">
         <ReactGridLayout className="layout" layout={layouts} onLayoutChange={this.onLayoutChange}
           cols={12} rowHeight={30} width={1200}>
-          <div key={"1"} className="comps" id="goals"><Goals username={this.props.username.bind(this)}/></div>
-          <div key={"3"} className="comps" className="paper" id="journal"><Journal username={this.props.username.bind(this)}/></div>
-          <div key={"4"} className="comps" id="notepad"><Notepad username={this.props.username.bind(this)}/></div>
+          <div key={"1"} className="comps" id="goals"><Goals username={this.props.realUsername}/></div>
+          <div key={"3"} className="comps" className="paper" id="journal"><Journal username={this.props.realUsername}/></div>
+          <div key={"4"} className="comps" id="notepad"><Notepad username={this.props.realUsername}/></div>
           <div key={"2"} className="comps" id="todo"><Todo username={this.props.realUsername}/></div>
-          <div key={"5"} className="comps" id="calendar"><Calendar username={this.props.username.bind(this)}/></div>
+          <div key={"5"} className="comps" id="calendar"><Calendar username={this.props.realUsername}/></div>
         </ReactGridLayout>
     	</div>
     );
