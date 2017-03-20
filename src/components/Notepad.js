@@ -8,7 +8,6 @@ class Notepad extends Component {
     this.state = {
       entry: '',
       date: Date.now(),
-      current: true,
       list: [],
       asc: 1
     };
@@ -54,26 +53,36 @@ createNoteEvent(){
   $.ajax ({
     method: 'POST',
     url: config.serverRoute + '/createnote',
-    data: JSON.stringify(this.state),
+    data: JSON.stringify(data),
     contentType: 'application/json'
   }).done(()=>{
     this.setState({ entry:'' });
+    this.updateCurrentNotes();
 })
 }
 
     render() {
+      if(!this.props.username)
+        return (
+          <div>
+            Loading...
+          </div>)
       return (
         <div id="notepad">
+          <form>
+			        <textarea placeholder="A place for notes!" value={this.state.entry}
+                onChange={this.entryChange.bind(this)} />
+			        <div className="buttons">
+    		           <input type="button" className="button" id="createNote"
+                     value="Add Notes" onClick={this.createNoteEvent.bind(this)} />
+                   <input type="button" className="button" id="listTasks"
+                     value="List Notes History"
+                     onClick={()=>this.updateCurrentNotes.bind(this)} />
+              </div>
+          </form>
           <div>
             <ul id="noteItem">{ this.createNoteList() }</ul>
           </div>
-          <form>
-			        <textarea placeholder="A place for notes!" value={this.state.entry} onChange={this.entryChange.bind(this)} />
-			        <div className="buttons">
-    		           <input type="button" className="button" id="createNote" value="Add Notes" onClick={this.createNoteEvent.bind(this)} />
-                   <input type="button" className="button" id="listTasks" value="List Notes History" onClick={this.updateCurrentNotes.bind(this)} />
-              </div>
-          </form>
         </div>
       );
     }
