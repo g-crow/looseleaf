@@ -54,7 +54,7 @@ createJournalEntry(){
           </div>
           <form>
       			<textarea placeholder="Journal space!" value={this.state.entry} onChange={this.entryChange.bind(this)} />
-      			<div class="buttons">
+      			<div className="buttons">
               <input type="button" className="button" id="createJournalEntry" value="Add Journal Entry" onClick={this.createJournalEntry.bind(this)} />
         		  <input type="button" className="button" id="listTasks" value="List Journal History" onClick={this.updateJournalHistory.bind(this)} />
             </div>

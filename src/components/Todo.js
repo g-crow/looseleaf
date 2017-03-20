@@ -6,7 +6,6 @@ class Todo extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: this.props.username(),
       entry: '',
       date: Date.now(),
       current: true,
@@ -14,56 +13,65 @@ class Todo extends Component {
     };
   }
 
+componentWillReceiveProps(nextProps){
+  if(this.props.username !== nextProps.username){
+    this.updateCurrentTodo(nextProps.username);
+  }
+}
+
 entryChange(e) {
   this.setState( {entry: e.target.value} )
-  var un = this.props.username()
-  this.setState({username: un})
 }
 
 createList(){
   var list = this.state.list;
   return list.map(function(entry){
     return (<span id="todoItems">
-      <input type="checkbox" name="todoitem" value="incomplete" /> {entry.entry}
-      <br />
+              <input type="checkbox" name="todoitem" value="incomplete" /> {entry.entry}
+              <br />
           </span>)
   })
 }
 
 
-updateCurrentTodo(){
+updateCurrentTodo(username){
   var self = this;
+  username = username || self.props.username
+  console.log('updating todos for ' + username)
   $.ajax ({
     method: 'GET',
-    url: config.serverRoute + '/currentTodos/' + self.props.username()
+    url: config.serverRoute + '/currentTodos/' + username
   }).done(function(data) {
-    self.setState( {list: data} );
+    self.setState({list: data} );
   })
 }
 
 createTodoEvent(){
+  var data = Object.assign({username: this.props.username}, this.state)
   $.ajax ({
     method: 'POST',
     url: config.serverRoute + '/createtodo',
-    data: JSON.stringify(this.state),
+    data: JSON.stringify(data),
     contentType: 'application/json'
-  }).done(this.setState({ entry:'' })) //clear form after entry
+  }).done(()=>{
+    this.setState({ entry:'' });
+    this.updateCurrentTodo();
+  }) //clear form after entry
 }
 
 
 
 
     render() {
-      return (
-        <div id="todo">
+        if(!this.props.username) return <div>Loading...</div>
+        return (<div id="todo">
           <div>
                 <span id="todoItems">{this.createList()}</span>
           </div>
           <form>
           	<input type="text" placeholder="to do item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
-            <div class="buttons">
+            <div className="buttons">
               <input type="button" className="button" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
-              <input type="button" className="button" id="listTasks" value="List Tasks" onClick={this.updateCurrentTodo.bind(this)} />
             </div>
           </form>
         </div>
