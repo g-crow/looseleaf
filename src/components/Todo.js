@@ -8,7 +8,6 @@ class Todo extends Component {
     this.state = {
       entry: '',
       date: Date.now(),
-      current: true,
       list: [],
       asc: 1
     };
@@ -29,29 +28,19 @@ entryChange(e) {
   this.setState( {entry: e.target.value} )
 }
 
-taskComplete(e){
-  console.log("task complete");
-  this.setState( {entry : e.target.value, current : false })
-  $.ajax ({
-    method: 'PUT',
-    url: config.serverRoute + '/taskComplete/' + this.username
-  }).done(function(data) {
-    self.setState({current:false} );
-  })
-}
+
+
 createList(){
+  const sortByDate = (a,b) =>
+      this.state.asc * (new Date(b.date)-new Date(a.date))
   var list = this.state.list;
-  // if current = true {
-    return list.sort((a,b)=> this.state.asc* (new Date(b.date)-new Date(a.date)))
-    .map(function(entry){
-      return (
-        <span id="todoItems">
-            <input type="checkbox" name="todoitem" value={entry.entry} onChange={this.taskComplete.bind(this)} /> {entry.entry}
-            <br />
-        </span>)
-    })
-  // }
+    return list
+      .sort(sortByDate)
+      .filter(entry => entry.current)
+      .map((entry) => <TodoItem key={entry._id} entry={entry} updateCurrentTodo={this.updateCurrentTodo.bind(this)}/> )
 }
+
+// onChange={this.taskComplete.bind(this)}
 
 updateCurrentTodo(username){
   var self = this;
@@ -61,6 +50,7 @@ updateCurrentTodo(username){
     method: 'GET',
     url: config.serverRoute + '/currentTodos/' + username
   }).done(function(data) {
+    console.log('All the data', [])
     self.setState({list: data} );
   })
 }
@@ -85,10 +75,10 @@ createTodoEvent(){
               Loading...
             </div>)
         return (<div id="todo">
-          <form>
+
             <input type="text" placeholder="to do item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
               <input type="submit" className="button" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
-          </form>
+
           <button className="button" onClick={()=>this.setState({asc: this.state.asc * -1})}>Reverse order</button>
           <div>
               <span id="todoItems">{this.createList()}</span>
@@ -96,6 +86,26 @@ createTodoEvent(){
         </div>
       );
     }
+  }
+
+  class TodoItem extends Component {
+
+    taskComplete(e){
+      console.log("task complete");
+      $.ajax ({
+        method: 'PUT',
+        url: config.serverRoute + '/taskComplete/' + this.props.entry._id
+      }).done(()=>this.props.updateCurrentTodo())
+    }
+
+    render(){
+      return (
+            <span id="todoItems">
+                <input type="checkbox" name="todoitem"  onClick={this.taskComplete.bind(this)}/> {this.props.entry.entry}
+                <br />
+            </span>)
+    }
+
   }
 
 

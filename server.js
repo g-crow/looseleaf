@@ -51,7 +51,7 @@ apiRoutes.post('/createjournalentry', journalcontroller.createJournalEntry);
 
 apiRoutes.post('/createcalendarevent', calendarcontroller.createCalendarEvent);
 
-apiRoutes.put('taskComplete', todoscontroller.taskComplete);
+apiRoutes.put('/taskComplete/:taskId', todoscontroller.taskComplete);
 
 // apiRoutes.put('/savelayout', artboardcontroller.saveLayout);
 
