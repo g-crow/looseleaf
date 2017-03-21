@@ -6,57 +6,82 @@ class Calendar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
       entry: '',
       date: Date.now(),
-      current: true,
-      list: []
+      list: [],
+      asc: 1
     };
   }
 
+  componentWillMount(){
+  if(this.props.username){
+    this.updateCurrentCalendar();
+  }
+}
+
+componentWillReceiveProps(nextProps){
+  if(this.props.username !== nextProps.username){
+    this.updateCurrentCalendar(nextProps.username);
+  }
+}
+
 entryChange(e) {
   this.setState( {entry: e.target.value} )
-  var un = this.props.username()
-  this.setState( {username: un} )
 }
 
 createList(){
   var list = this.state.list;
-  return list.map(function(entry){
+  return list.sort((a,b)=> this.state.asc* (new Date(b.date)-new Date(a.date)))
+  .map(function(entry){
     return (<li> {entry.entry} </li>)
   })
 }
 
-updateCurrentCalendar(){
+updateCurrentCalendar(username){
   var self = this;
+   username = username || self.props.username
   $.ajax ({
     method: 'GET',
-    url: config.serverRoute + '/currentCalendar/' + self.props.username()
+    url: config.serverRoute + '/currentCalendar/' + username
   }).done(function(data) {
     self.setState( {list: data} );
   })
 }
 
 createCalendarEvent(){
+  var data = Object.assign({username: this.props.username}, this.state)
   $.ajax ({
     method: 'POST',
     url: config.serverRoute + '/createcalendarevent',
-    data: JSON.stringify(this.state),
+    data: JSON.stringify(data),
     contentType: 'application/json'
-  }).done(this.setState({ entry:'' }));
+  }).done(()=>{
+      console.log("calendarEvent2")
+    this.setState({ entry:'' });
+    this.updateCurrentCalendar();
+})
 }
 
     render() {
+      if(!this.props.username)
+        return (
+          <div>
+            Loading...
+          </div>)
       return (
         <div>
           <div>
             <ul id="calendarItem">{ this.createList() }</ul>
           </div>
           <form>
-          	<input type="text" placeholder="What's coming up?" value={this.state.entry} onChange={this.entryChange.bind(this)} />
+          	<input type="text" placeholder="What's coming up?" value={this.state.entry}
+              onChange={this.entryChange.bind(this)} />
             <div className="buttons">
-              <input type="button" className="button" id="createTodo" value="Add New Calendar Item" onClick={this.createCalendarEvent.bind(this)} />
-              <input type="button" className="button" id="listTasks" value="List Upcoming Calendar Items" onClick={this.updateCurrentCalendar.bind(this)} />
+                 <input type="button" className="button" id="createNote"
+                   value="Add Event" onClick={this.createCalendarEvent.bind(this)} />
+                 <input type="button" className="button" id="listTasks"
+                   value="List Calendar History"
+                   onClick={()=>this.updateCurrentCalendar.bind(this)} />
             </div>
           </form>
         </div>

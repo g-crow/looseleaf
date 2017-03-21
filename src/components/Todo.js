@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import { Glyphicon } from 'react-bootstrap';
 var config = require('../../config');
 
 class Todo extends Component {
@@ -79,7 +80,8 @@ createTodoEvent(){
             <input type="text" placeholder="to do item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
               <input type="submit" className="button" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
 
-          <button className="button" onClick={()=>this.setState({asc: this.state.asc * -1})}>Reverse order</button>
+          <button className="button" className="glyphy" type='submit' onClick={()=>this.setState({asc: this.state.asc * -1})}><Glyphicon glyph="sort" /></button>
+
           <div>
               <span id="todoItems">{this.createList()}</span>
           </div>

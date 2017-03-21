@@ -59,6 +59,19 @@ textarea {
 	font-size: 16px;
 }
 
+.glyphy{
+	float: right;
+	clear: both;
+	background-color: #e3aee8;
+	border: 1px solid #631507;
+	border-radius: 22px;
+	color: #ffffff;
+	padding: 5px 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 20px;
+}
+
 .button {
 	float: right;
 	clear: both;
