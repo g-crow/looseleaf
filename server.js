@@ -128,6 +128,8 @@ apiRoutes.get('/JournalHistory/:username', journalcontroller.getUserJournal);
 
 apiRoutes.get('/currentCalendar/:username', calendarcontroller.getUserCalendar);
 
+apiRoutes.get('/getlayout/:username', layoutcontroller.getLayout);
+
 app.use('/api', apiRoutes);
 app.listen(3002);
 console.log('Magic');

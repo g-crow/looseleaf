@@ -17,45 +17,42 @@ class Artboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      layouts: [
-        {i: '1', x: 0, y: 0, w: 3, h: 3},
-        {i: '2', x: 3, y: 0, w: 3, h: 3},
-        {i: '3', x: 6, y: 0, w: 3, h: 9},
-        {i: '4', x: 0, y: 3, w: 6, h: 3},
-        {i: '5', x: 0, y: 6, w: 6, h: 3 }
-      ],
-      username: this.props.username
+      layouts: []
     };
   }
 
   componentWillMount() {
+    var self = this
     if(this.props.notLoggedIn()){
       browserHistory.push('/login')
     }
+    $.ajax ({
+      method: 'GET',
+      url: config.serverRoute + '/getlayout/' + this.props.username
+    }).done(function(data) {
+      self.setState( {layouts: data} );
+    })
   }
 
 
   onLayoutChange(layout){
-  this.setState( {layouts: layout,
+    this.setState( {layouts: layout,
                   username: this.props.username})
-  console.log(this.state)
+    console.log('Changing the layout',this.state)
     $.ajax ({
       method: 'PUT',
       url: config.serverRoute + '/savelayout',
-      data: JSON.stringify(this.state),
+      data: JSON.stringify({
+          username: this.props.username,
+          layouts: this.state.layouts
+        }),
       contentType: 'application/json'
-        });
-}
+    });
+  }
 
   render() {
-
-      var layouts = [
-        {i: '1', x: 0, y: 0, w: 3, h: 3},
-        {i: '2', x: 3, y: 0, w: 3, h: 3},
-        {i: '3', x: 6, y: 0, w: 3, h: 9},
-        {i: '4', x: 0, y: 3, w: 6, h: 3},
-        {i: '5', x: 0, y: 6, w: 6, h: 3 }
-      ];
+    var layouts = this.state.layouts
+    console.log('layouts',layouts)
     return (
     	<div id="artboard">
         <ReactGridLayout className="layout" layout={layouts} onLayoutChange={this.onLayoutChange.bind(this)}

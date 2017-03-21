@@ -13,7 +13,7 @@ function createLayout(req, res) {
     layout.username = req.body.username;
 
 
-    Layout.save(function(err) {
+    layout.save(function(err) {
       if(err) throw err;
       res.json({ success: true });
     });
@@ -23,13 +23,19 @@ function saveLayout(req, res){
     Layout.update({username: req.body.username}, {$set: {layout: req.body.layouts}},
       function (err, layout) {
       res.json(layout);
-    })
+    });
 }
 
-
+function getLayout(req, res) {
+  Layout.findOne({username: req.params.username},
+  function(err, layout) {
+    res.json(layout.layout)
+  });
+}
 
 
 module.exports = {
   createLayout,
-  saveLayout
+  saveLayout,
+  getLayout
 }

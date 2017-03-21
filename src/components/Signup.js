@@ -54,7 +54,7 @@ class Signup extends Component {
             data: JSON.stringify({username: self.state.username}),
             contentType: 'application/json'
           })
-          .done(browserHistory.push('/Artboard'))
+          .done(() => browserHistory.push('/Artboard'))
       })
     } else {
       this.setState ({test: true})
