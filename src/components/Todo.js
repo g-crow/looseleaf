@@ -29,8 +29,6 @@ entryChange(e) {
   this.setState( {entry: e.target.value} )
 }
 
-
-
 createList(){
   const sortByDate = (a,b) =>
       this.state.asc * (new Date(b.date)-new Date(a.date))
@@ -40,8 +38,6 @@ createList(){
       .filter(entry => entry.current)
       .map((entry) => <TodoItem key={entry._id} entry={entry} updateCurrentTodo={this.updateCurrentTodo.bind(this)}/> )
 }
-
-// onChange={this.taskComplete.bind(this)}
 
 updateCurrentTodo(username){
   var self = this;
@@ -69,21 +65,19 @@ createTodoEvent(){
   }) //clear form after entry
 }
 
-    render() {
-        if(!this.props.username)
-          return (
-            <div>
-              Loading...
-            </div>)
-        return (<div id="todo">
-
-            <input type="text" placeholder="to do item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
-              <input type="submit" className="button" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
-
+  render() {
+    if(!this.props.username)
+      return (
+        <div>
+          Loading...
+        </div>)
+      return (
+        <div id="todo">
+          <input type="text" placeholder="to do item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
+          <input type="submit" className="button" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
           <button className="button" className="glyphy" type='submit' onClick={()=>this.setState({asc: this.state.asc * -1})}><Glyphicon glyph="sort" /></button>
-
           <div>
-              <span id="todoItems">{this.createList()}</span>
+            <span id="todoItems">{this.createList()}</span>
           </div>
         </div>
       );
@@ -100,17 +94,13 @@ createTodoEvent(){
       }).done(()=>this.props.updateCurrentTodo())
     }
 
-
-
     render(){
       return (
-            <span id="todoItems">
-                <input type="checkbox" name="todoitem"  onClick={this.taskComplete.bind(this)}/> {this.props.entry.entry}
-                <br />
-            </span>)
+        <span id="todoItems">
+          <input type="checkbox" name="todoitem"  onClick={this.taskComplete.bind(this)}/> {this.props.entry.entry}
+          <br />
+        </span>)
     }
-
   }
-
 
   export default Todo;
