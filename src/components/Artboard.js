@@ -17,14 +17,14 @@ class Artboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      access: false,
       layouts: [
         {i: '1', x: 0, y: 0, w: 3, h: 3},
         {i: '2', x: 3, y: 0, w: 3, h: 3},
         {i: '3', x: 6, y: 0, w: 3, h: 9},
         {i: '4', x: 0, y: 3, w: 6, h: 3},
         {i: '5', x: 0, y: 6, w: 6, h: 3 }
-      ]
+      ],
+      username: this.props.username
     };
   }
 
@@ -34,20 +34,18 @@ class Artboard extends Component {
     }
   }
 
-  // saveLayoutEvent() {
-  //   $.ajax ({
-  //     method: 'PUT',
-  //     url: config.serverRoute + '/savelayout',
-  //     data: JSON.stringify(this.state),
-  //     contentType: 'application/json'
-  //   });
-  // }
 
   onLayoutChange(layout){
-    console.log("word")
-    this.setState( {layouts: layout } )
-    console.log(this.state.layouts)
-  }
+  this.setState( {layouts: layout,
+                  username: this.props.username})
+  console.log(this.state)
+    $.ajax ({
+      method: 'PUT',
+      url: config.serverRoute + '/savelayout',
+      data: JSON.stringify(this.state),
+      contentType: 'application/json'
+        });
+}
 
   render() {
 

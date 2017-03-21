@@ -19,6 +19,7 @@ var Journal = require('./server/models/journal');
 var journalcontroller = require('./server/controllers/journalController');
 var Calendar = require('./server/models/calendar');
 var calendarcontroller = require('./server/controllers/calendarController');
+var layoutcontroller = require('./server/controllers/layoutcontroller')
 
 //requires dependencies
 
@@ -41,6 +42,8 @@ var apiRoutes = express.Router();
 
 apiRoutes.post('/createuser', usercontroller.createuser);
 
+apiRoutes.post('/createlayout', layoutcontroller.createLayout);
+
 apiRoutes.post('/createtodo', todoscontroller.createTodo);
 
 apiRoutes.post('/creategoal', goalscontroller.createGoal);
@@ -53,7 +56,7 @@ apiRoutes.post('/createcalendarevent', calendarcontroller.createCalendarEvent);
 
 apiRoutes.put('/taskComplete/:taskId', todoscontroller.taskComplete);
 
-// apiRoutes.put('/savelayout', artboardcontroller.saveLayout);
+apiRoutes.put('/savelayout', layoutcontroller.saveLayout);
 
 
 apiRoutes.post('/authenticate', function(req, res) {

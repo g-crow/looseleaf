@@ -1,26 +1,35 @@
 var Layout = require('../models/layout')
 var config = require('../../config');
 
+function createLayout(req, res) {
+  var layout = new Layout ();
+    layout.layout = [
+      {i: '1', x: 0, y: 0, w: 3, h: 3},
+      {i: '2', x: 3, y: 0, w: 3, h: 3},
+      {i: '3', x: 6, y: 0, w: 3, h: 9},
+      {i: '4', x: 0, y: 3, w: 6, h: 3},
+      {i: '5', x: 0, y: 6, w: 6, h: 3 }
+    ];
+    layout.username = req.body.username;
+
+
+    Layout.save(function(err) {
+      if(err) throw err;
+      res.json({ success: true });
+    });
+}
+
 function saveLayout(req, res){
-    layout: req.params.layout,
-    username: req.props.username
-}
-
-  layout.save(function(err) {
-    if(err) throw err;
-    res.json({ success: true });
-  });
+    Layout.update({username: req.body.username}, {$set: {layout: req.body.layouts}},
+      function (err, layout) {
+      res.json(layout);
+    })
 }
 
 
-function getUserLayout(req, res) {
-  Artboard.find({username: req.params.username}, function(err, notes) {
-    res.json(artboard);
-  });
-};
 
 
 module.exports = {
-  createNote,
-  getUserNotes
+  createLayout,
+  saveLayout
 }

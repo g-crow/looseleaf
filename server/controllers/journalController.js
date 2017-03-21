@@ -15,7 +15,7 @@ function createJournalEntry(req, res){
 }
 
 function getUserJournal(req, res) {
-  console.log(req.params.username)
+  //console.log(req.params.username)
   Journal.find({username: req.params.username}, function(err, journal) {
     res.json(journal);
   });
