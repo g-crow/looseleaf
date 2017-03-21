@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import $ from 'jquery';
 var config = require('../../config');
 
@@ -6,7 +6,7 @@ class Journal extends Component {
  constructor(props) {
    super(props)
    this.state = {
-     entry: '',
+     entry: '', 
      date: Date.now(),
      current: true,
      list: []
