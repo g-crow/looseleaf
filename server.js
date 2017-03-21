@@ -117,7 +117,7 @@ apiRoutes.get('/users', function(req, res) {
 
 apiRoutes.get('/currentTodos/:username', todoscontroller.getUserToDoList);
 
-apiRoutes.get('/goals/:username', goalscontroller.getUserGoalList);
+apiRoutes.get('/currentgoals/:username', goalscontroller.getUserGoalList);
 
 apiRoutes.get('/currentNote/:username', notescontroller.getUserNotes);
 

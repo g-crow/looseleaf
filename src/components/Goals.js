@@ -6,52 +6,65 @@ class Goals extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
       entry: '',
       date: Date.now(),
       current: true,
-      list: []
+      list: [],
+      asc: 1
     };
   }
 
+  componentWillMount(){
+    if(this.props.username){
+    this.updateGoals();
+  }
+  }
+
+componentWillReceiveProps(nextProps){
+  if(this.props.username !== nextProps.username){
+  this.updateGoals(nextProps.username);
+}
+}
+
   entryChange(e) {
     this.setState( {entry: e.target.value} )
-    var un = this.props.username()
-    this.setState( {username: un})
 
   }
-
-comp
-  updateGoals(){
-    var self = this
-    $.ajax ({
-      method: 'GET',
-      url: config.serverRoute + '/goals/' + self.props.username()
-    }).done(function(data) {
-      self.setState( {list: data} );
-      console.log( {list: data } );
-    })
-  }
-
 
   createGoalList(){
     var list = this.state.list;
-    return list.map(function(entry){
-      return (<li> {entry.entry} </li>)
-    })
-  }
+      return list.sort((a,b)=> this.state.asc* (new Date(b.date)-new Date(a.date)))
+      .map(function(entry){
+    return (<li> {entry.entry} </li>)
+  })
+}
+
+  updateGoals(username){
+    console.log("hi")
+    var self = this;
+     username = username || self.props.username
+     $.ajax ({
+    method: 'GET',
+    url: config.serverRoute + '/currentgoals/' + username
+  }).done(function(data) {
+    self.setState( {list: data} );
+  })
+}
 
 
-
-  createGoalEvent(){
-    console.log(this.state)
+    createGoalEvent(){
+      var data = Object.assign({username: this.props.username}, this.state)
     $.ajax ({
       method: 'POST',
       url: config.serverRoute + '/creategoal',
-      data: JSON.stringify(this.state),
+      data: JSON.stringify(data),
       contentType: 'application/json'
-    }).done(this.setState({ entry:'' }));
+    }).done(()=>{
+      this.setState({ entry:'' });
+      this.updateGoals();
+  })
   }
+
 
   render() {
     return (
@@ -63,7 +76,7 @@ comp
         	<textarea placeholder="goal item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
         	<div className="buttons">
             <input type="button" className="button" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} />
-            <input type="button" className="button" id="listGoals" value="List Goals" onClick={this.updateGoals.bind(this)} />
+            <input type="button" className="button" id="listGoals" value="List Goals" onClick={()=>this.updateGoals.bind(this)} />
           </div>
         </form>
       </div>
