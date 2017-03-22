@@ -136,7 +136,7 @@ apiRoutes.get('/getlayout/:username', layoutcontroller.getLayout);
 app.use('/api', apiRoutes);
 
 app.get('*', function(req, res){
-  res.sendFile('./build/index.html');
+  res.sendFile(path.join(__dirname + '/build/index.html'));
 })
 
 app.listen(process.env.PORT || config.port || 3002);
