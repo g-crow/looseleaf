@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //middleware allowing translation from .json to JavaScript objects and vice versa
 app.use(morgan('dev'));
-console.log('Deployed???', config.deployed)
+console.log('Deployed???', config)
 if (config.deployed){
   app.use(express.static('build'))
 }

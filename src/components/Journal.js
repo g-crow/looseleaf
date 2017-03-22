@@ -18,7 +18,7 @@ class Journal extends Component {
      this.updateJournalHistory();
    }
  }
-
+ 
  componentWillReceiveProps(nextProps){
    if(this.props.username !== nextProps.username){
      this.updateJournalHistory(nextProps.username);
@@ -45,7 +45,8 @@ class Journal extends Component {
 createJournalHistory(){
  var list = this.state.list;
  return list.map(function(entry){
-   return (<li> {entry.entry} </li>)
+   return (<li> {entry.entry} <br/>
+   <br/></li>)
  })
 }
 
@@ -59,18 +60,36 @@ createJournalEntry(){
    contentType: 'application/json'
  }).done(() => {
    this.setState({ entry: ''});
-   this.updateJournalHistory();
  })
 }
 
+
+  getDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd='0'+dd}
+
+  if(mm<10) {
+      mm='0'+mm}
+
+  today = mm+'/'+dd+'/'+yyyy;
+  return today
+  }
+
    render() {
+
      if (!this.props.username)
      return (
        <div>Loading...</div>
      )
      return (
        <div className="paper-content">
-         <div><h1>Journal Space</h1></div>
+         <div><h1>Journal Space [{this.getDate()}]</h1>
+        </div>
          <div>
            <ul id="journalHistory">{ this.createJournalHistory() }</ul>
          </div>
@@ -78,7 +97,7 @@ createJournalEntry(){
                  <textarea placeholder="Today something happened..." value={this.state.entry} onChange={this.entryChange.bind(this)} />
                  <div className="buttons">
              <input type="button" className="button" id="createJournalEntry" value="Add Journal Entry" onClick={this.createJournalEntry.bind(this)} />
-                 <input type="button" className="button" id="listTasks" value="List Journal History" onClick={()=>this.updateJournalHistory.bind(this)} />
+                 <input type="button" className="button" id="listTasks" value="View History" onClick={this.updateJournalHistory.bind(this)} />
            </div>
          </form>
        </div>
