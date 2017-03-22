@@ -19,6 +19,7 @@ componentWillMount(){
     this.updateCurrentTodo();
   }
 }
+
 componentWillReceiveProps(nextProps){
   if(this.props.username !== nextProps.username){
     this.updateCurrentTodo(nextProps.username);

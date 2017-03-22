@@ -20,22 +20,25 @@ class Goals extends Component {
     }
   }
 
-componentWillReceiveProps(nextProps){
-  if(this.props.username !== nextProps.username){
-    this.updateGoals(nextProps.username);
+  componentWillReceiveProps(nextProps){
+    if(this.props.username !== nextProps.username){
+      this.updateGoals(nextProps.username);
+    }
   }
-}
 
   entryChange(e) {
     this.setState( {entry: e.target.value} )
   }
 
   createGoalList(){
+    const sortByDate = (a,b) =>
+        this.state.asc * (new Date(b.date)-new Date(a.date))
     var list = this.state.list;
-      return list.sort((a,b)=> this.state.asc* (new Date(b.date)-new Date(a.date)))
-      .map(function(entry){
-      return (<li>{entry.entry} </li>)
-    })
+    return list
+      .sort(sortByDate)
+      .filter(entry => entry.current)
+      .map((entry) => <GoalItem key={entry._id} entry={entry}
+      updateGoals={this.updateGoals.bind(this)}/> )
   }
 
   updateGoals(username){
@@ -67,10 +70,9 @@ componentWillReceiveProps(nextProps){
   render() {
     return (
       <div id="goals">
-         <div><h1>Goals</h1></div>
+        <div><h1>Goals</h1></div>
         <textarea placeholder="goal item"  className='immobile' value={this.state.entry} onChange={this.entryChange.bind(this)} />
         <input type="button" className="button immobile" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} />
-        <input type="button" className="button immobile" id="listGoals" value="List Goals" onClick={this.updateGoals.bind(this)} />
         <div>
           <ul id="goalItem">{ this.createGoalList() }</ul>
         </div>
@@ -79,4 +81,23 @@ componentWillReceiveProps(nextProps){
   }
 }
 
+class GoalItem extends Component {
+
+  goalComplete(e){
+    console.log("goal complete");
+    $.ajax ({
+      method: 'PUT',
+      url: config.serverRoute + '/goalComplete/' + this.props.entry._id
+    }).done(()=>this.props.updateGoals())
+  }
+
+  render(){
+    return (
+      <span id="goalItems">
+        <input type="checkbox" name="goalitem"
+          onClick={this.goalComplete.bind(this)}/> {this.props.entry.entry}
+        <br />
+      </span>)
+  }
+}
 export default Goals;
