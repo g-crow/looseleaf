@@ -134,6 +134,11 @@ apiRoutes.get('/currentCalendar/:username', calendarcontroller.getUserCalendar);
 apiRoutes.get('/getlayout/:username', layoutcontroller.getLayout);
 
 app.use('/api', apiRoutes);
+
+app.get('*', function(req, res){
+  res.sendFile('./build/index.html');
+})
+
 app.listen(process.env.PORT || config.port || 3002);
 console.log('Magic');
 
