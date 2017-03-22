@@ -2,7 +2,7 @@ var Goal = require('../models/goal');
 var config = require('../../config');
 
 function createGoal(req, res){
-	console.log(req.body)
+	//console.log(req.body)
 	var goal = new Goal ();
 		  goal.username = req.body.username;
     	goal.entry = req.body.entry;
@@ -18,7 +18,7 @@ function createGoal(req, res){
 }
 
 function getUserGoalList(req, res) {
-  console.log(req.params.username)
+  //console.log(req.params.username)
   Goal.find({username: req.params.username}, function(err, goals) {
     res.json(goals);
   });

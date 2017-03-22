@@ -48,11 +48,17 @@ class Signup extends Component {
         contentType: 'application/json'
       }).done(function(success) {
         self.props.login(success.token, self.state.username)
-        browserHistory.push('/Artboard')
-      });
+          $.ajax ({
+            method: 'POST',
+            url: config.serverRoute + '/createlayout',
+            data: JSON.stringify({username: self.state.username}),
+            contentType: 'application/json'
+          })
+          .done(() => browserHistory.push('/Artboard'))
+      })
     } else {
       this.setState ({test: true})
-    }
+    } console.log(self.state.username);
   }
 
   render() {

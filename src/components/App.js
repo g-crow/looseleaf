@@ -46,7 +46,7 @@ export default class App extends Component{
       login: this.login.bind(this),
       logout: this.logout.bind(this),
       notLoggedIn: this.notLoggedIn.bind(this),
-      username: this.giveUsername.bind(this),
+      // username: this.giveUsername.bind(this),
       realUsername: this.state.username
     }
     return (

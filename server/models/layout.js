@@ -2,15 +2,15 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var individualLayout = Schema ({{
-    i: string,
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-}
+var individualLayout = Schema ({
+    i: String,
+    x: Number,
+    y: Number,
+    w: Number,
+    h: Number,
+})
 
 module.exports = mongoose.model('Layout', Schema({
-  layout: [individualLayout],
-  username: {type: String, required: true, unique: true}
+  layout: {type: [individualLayout], required: true},
+  username: {type: String, required: true}
 }) )
