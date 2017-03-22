@@ -49,7 +49,9 @@ componentWillReceiveProps(nextProps){
     })
   }
 
-  createGoalEvent(){
+  createGoalEvent(e){
+    console.log('adding goal')
+    e.preventDefault()
     var data = Object.assign({username: this.props.username}, this.state)
     $.ajax ({
       method: 'POST',
@@ -66,9 +68,9 @@ componentWillReceiveProps(nextProps){
     return (
       <div id="goals">
          <div><h1>Goals</h1></div>
-        <textarea placeholder="goal item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
-        <input type="button" className="button" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} />
-        <input type="button" className="button" id="listGoals" value="List Goals" onClick={()=>this.updateGoals.bind(this)} />
+        <textarea placeholder="goal item"  className='immobile' value={this.state.entry} onChange={this.entryChange.bind(this)} />
+        <input type="button" className="button immobile" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} />
+        <input type="button" className="button immobile" id="listGoals" value="List Goals" onClick={this.updateGoals.bind(this)} />
         <div>
           <ul id="goalItem">{ this.createGoalList() }</ul>
         </div>

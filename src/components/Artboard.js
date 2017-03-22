@@ -26,31 +26,35 @@ class Artboard extends Component {
     if(this.props.notLoggedIn()){
       browserHistory.push('/login')
     }
-    $.ajax ({
-      method: 'GET',
-      url: config.serverRoute + '/getlayout/' + this.props.username
-    }).done(function(data) {
-      self.setState( {layouts: data || [
-        {i: '1', x: 0, y: 0, w: 3, h: 3},
-        {i: '2', x: 3, y: 0, w: 3, h: 3},
-        {i: '3', x: 6, y: 0, w: 3, h: 9},
-        {i: '4', x: 0, y: 3, w: 6, h: 3},
-        {i: '5', x: 0, y: 6, w: 6, h: 3 }
-      ]} );
-    })
   }
 
+  isThereALayout(){
+    var self = this
+    if (self.state.layouts.length === 0 && this.props.username) {
+      $.ajax ({
+        method: 'GET',
+        url: config.serverRoute + '/getlayout/' + this.props.username
+      }).done(function(data) {
+        self.setState( {layouts: data || [
+          {i: '1', x: 0, y: 0, w: 3, h: 3},
+          {i: '2', x: 3, y: 0, w: 3, h: 3},
+          {i: '3', x: 6, y: 0, w: 3, h: 9},
+          {i: '4', x: 0, y: 3, w: 6, h: 3},
+          {i: '5', x: 0, y: 6, w: 6, h: 3 }
+        ]} );
+      })
+    }
+  }
 
   onLayoutChange(layout){
-    this.setState( {layouts: layout,
-                  username: this.props.username})
+
     console.log('Changing the layout',this.state)
     $.ajax ({
       method: 'PUT',
       url: config.serverRoute + '/savelayout',
       data: JSON.stringify({
           username: this.props.username,
-          layouts: this.state.layouts
+          layouts: layout
         }),
       contentType: 'application/json'
     });
@@ -58,6 +62,10 @@ class Artboard extends Component {
 
   render() {
     var layouts = this.state.layouts
+    this.isThereALayout();
+    if (this.state.layouts.length === 0) {
+      return ( <div>Loading...</div>)
+    }
     console.log('layouts',layouts)
     return (
     	<div id="artboard">
