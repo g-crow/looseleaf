@@ -1,7 +1,10 @@
+var deployed = process.env.DEPLOYED ? true : false;
+
 module.exports = {
   'secret': 'ihatejavascript',
-  'database': 'mongodb://localhost/Looseleaf',
-  'webpack': 'http://localhost:3000',
-  'serverRoute': 'http://localhost:3002/api',
+  'database': process.env.MONGODB_URI || 'mongodb://localhost/Looseleaf',
+  'webpack': deployed ? '/' : 'http://localhost:3000',
+  'serverRoute':deployed ? '/' : 'http://localhost:3002/api',
+  'deployed' : deployed
   // 'usernamePlaceholder': "User's Name"
 }

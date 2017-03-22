@@ -37,7 +37,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //middleware allowing translation from .json to JavaScript objects and vice versa
 app.use(morgan('dev'));
-
+if (config.deployed){
+  app.use(express.static('build'))
+}
 var apiRoutes = express.Router();
 
 apiRoutes.post('/createuser', usercontroller.createuser);
