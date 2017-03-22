@@ -20,6 +20,7 @@ var journalcontroller = require('./server/controllers/journalController');
 var Calendar = require('./server/models/calendar');
 var calendarcontroller = require('./server/controllers/calendarController');
 var layoutcontroller = require('./server/controllers/layoutcontroller')
+var path = require('path');
 
 //requires dependencies
 
@@ -37,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //middleware allowing translation from .json to JavaScript objects and vice versa
 app.use(morgan('dev'));
-console.log('Deployed???', config.deployed)
+console.log('Deployed???', config)
 if (config.deployed){
   app.use(express.static('build'))
 }
@@ -58,6 +59,8 @@ apiRoutes.post('/createjournalentry', journalcontroller.createJournalEntry);
 apiRoutes.post('/createcalendarevent', calendarcontroller.createCalendarEvent);
 
 apiRoutes.put('/taskComplete/:taskId', todoscontroller.taskComplete);
+
+apiRoutes.put('/goalComplete/:goalId', goalscontroller.goalComplete);
 
 apiRoutes.put('/savelayout', layoutcontroller.saveLayout);
 
@@ -134,7 +137,12 @@ apiRoutes.get('/currentCalendar/:username', calendarcontroller.getUserCalendar);
 apiRoutes.get('/getlayout/:username', layoutcontroller.getLayout);
 
 app.use('/api', apiRoutes);
-app.listen(config.port);
+
+app.get('*', function(req, res){
+  res.sendFile(path.join(__dirname + '/build/index.html'));
+})
+
+app.listen(process.env.PORT || config.port || 3002);
 console.log('Magic');
 
 //establishes which local port server is running on

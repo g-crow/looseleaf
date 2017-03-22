@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 var config = require('../../config');
+var DatePicker = require('react-datepicker');
+var moment = require('moment');
 
 class Calendar extends Component {
   constructor(props) {
@@ -9,9 +11,14 @@ class Calendar extends Component {
       entry: '',
       date: Date.now(),
       list: [],
-      asc: 1
+      asc: 1,
+      startDate: moment()
     };
   }
+// 
+// handleChange(){
+//   this.setState( {startDate: } )
+// }
 
   componentWillMount(){
   if(this.props.username){
@@ -77,6 +84,11 @@ createCalendarEvent(){
           <form>
           	<input type="text" placeholder="What's coming up?" value={this.state.entry}
               onChange={this.entryChange.bind(this)} />
+
+              <DatePicker inline
+          selected={this.state.startDate}
+          onChange={this.handleChange}/>
+
             <div className="buttons">
                  <input type="button" className="button" id="createNote"
                    value="Add Event" onClick={this.createCalendarEvent.bind(this)} />
