@@ -1,5 +1,5 @@
 
-var dev = process.env.DEV
+var dev = true
 module.exports = {
   'secret': 'ihatejavascript',
   'database': process.env.MONGODB_URI || 'mongodb://localhost/Looseleaf',
