@@ -134,7 +134,7 @@ apiRoutes.get('/currentCalendar/:username', calendarcontroller.getUserCalendar);
 apiRoutes.get('/getlayout/:username', layoutcontroller.getLayout);
 
 app.use('/api', apiRoutes);
-app.listen(config.port);
+app.listen(process.env.PORT || config.port || 3002);
 console.log('Magic');
 
 //establishes which local port server is running on
