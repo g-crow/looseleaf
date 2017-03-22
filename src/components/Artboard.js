@@ -9,7 +9,7 @@ import Notepad from './Notepad';
 import Todo from './Todo';
 import Calendar from './Calendar';
 import $ from 'jquery';
-import {browserHistory} from 'react-router'
+import {browserHistory} from 'react-router';
 var config = require('../../config');
 
 class Artboard extends Component {

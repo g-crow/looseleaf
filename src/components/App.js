@@ -49,6 +49,7 @@ export default class App extends Component{
       // username: this.giveUsername.bind(this),
       realUsername: this.state.username
     }
+
     return (
       <div>
         <div id="looseleaf-logo"><img src={require('../../public/images/LL-logo.png')} /></div>
@@ -57,7 +58,7 @@ export default class App extends Component{
             {!this.state.token ? <li><Link to="/login" activeClassName="active">Login</Link></li>
                                : <li><Link to="/login" onClick={this.logout.bind(this)} activeClassName="active">Logout</Link></li>}
             {!this.state.token ? <li><Link to="/signup" activeClassName="active">Sign Up</Link></li> : ""}
-            {/* <li><Link to="/artboard" activeClassName="active">Artboard</Link></li> */}
+            {window.location.pathname.toLowerCase() === '/artboard' ? "" : <li><Link to="/about" activeClassName="active">About</Link></li>}
           </ul>
       </nav>
 

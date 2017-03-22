@@ -24,7 +24,15 @@ function getUserGoalList(req, res) {
   });
 };
 
+function goalComplete(req, res) {
+	Goal.update({_id: req.params.goalId}, {$set: {current: false}},
+		function(err, goals) {
+		res.json(goals);
+	})
+}
+
 module.exports = {
   createGoal,
-  getUserGoalList
+  getUserGoalList,
+	goalComplete
 }

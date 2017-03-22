@@ -60,6 +60,8 @@ apiRoutes.post('/createcalendarevent', calendarcontroller.createCalendarEvent);
 
 apiRoutes.put('/taskComplete/:taskId', todoscontroller.taskComplete);
 
+apiRoutes.put('/goalComplete/:goalId', goalscontroller.goalComplete);
+
 apiRoutes.put('/savelayout', layoutcontroller.saveLayout);
 
 
