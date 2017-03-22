@@ -6,7 +6,7 @@ class Journal extends Component {
  constructor(props) {
    super(props)
    this.state = {
-     entry: '', 
+     entry: '',
      date: Date.now(),
      current: true,
      list: []
@@ -70,11 +70,12 @@ createJournalEntry(){
      )
      return (
        <div className="paper-content">
+         <div><h1>Journal Space</h1></div>
          <div>
            <ul id="journalHistory">{ this.createJournalHistory() }</ul>
          </div>
          <form>
-                 <textarea placeholder="Journal space!" value={this.state.entry} onChange={this.entryChange.bind(this)} />
+                 <textarea placeholder="Today something happened..." value={this.state.entry} onChange={this.entryChange.bind(this)} />
                  <div className="buttons">
              <input type="button" className="button" id="createJournalEntry" value="Add Journal Entry" onClick={this.createJournalEntry.bind(this)} />
                  <input type="button" className="button" id="listTasks" value="List Journal History" onClick={()=>this.updateJournalHistory.bind(this)} />

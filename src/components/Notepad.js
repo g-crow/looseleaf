@@ -69,6 +69,7 @@ createNoteEvent(){
           </div>)
       return (
         <div id="notepad">
+          <div><h1>Notepad</h1></div>
           <form>
 			        <textarea placeholder="A place for notes!" value={this.state.entry}
                 onChange={this.entryChange.bind(this)} />

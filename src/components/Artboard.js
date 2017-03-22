@@ -30,7 +30,13 @@ class Artboard extends Component {
       method: 'GET',
       url: config.serverRoute + '/getlayout/' + this.props.username
     }).done(function(data) {
-      self.setState( {layouts: data} );
+      self.setState( {layouts: data || [
+        {i: '1', x: 0, y: 0, w: 3, h: 3},
+        {i: '2', x: 3, y: 0, w: 3, h: 3},
+        {i: '3', x: 6, y: 0, w: 3, h: 9},
+        {i: '4', x: 0, y: 3, w: 6, h: 3},
+        {i: '5', x: 0, y: 6, w: 6, h: 3 }
+      ]} );
     })
   }
 

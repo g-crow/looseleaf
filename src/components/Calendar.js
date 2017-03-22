@@ -70,6 +70,7 @@ createCalendarEvent(){
           </div>)
       return (
         <div>
+            <div><h1>Calendar</h1></div>
           <div>
             <ul id="calendarItem">{ this.createList() }</ul>
           </div>
