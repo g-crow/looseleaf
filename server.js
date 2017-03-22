@@ -20,6 +20,7 @@ var journalcontroller = require('./server/controllers/journalController');
 var Calendar = require('./server/models/calendar');
 var calendarcontroller = require('./server/controllers/calendarController');
 var layoutcontroller = require('./server/controllers/layoutcontroller')
+var path = require('path');
 
 //requires dependencies
 
