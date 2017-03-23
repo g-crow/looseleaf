@@ -9,9 +9,11 @@ class Notepad extends Component {
       entry: '',
       date: Date.now(),
       list: [],
+      displayList: true,
       asc: 1
     };
   }
+
 
 componentWillMount(){
   if(this.props.username){
@@ -29,6 +31,19 @@ entryChange(e) {
   this.setState( {entry: e.target.value} )
 }
 
+
+updateCurrentNotes(username){
+  var self = this;
+  username = username || self.props.username
+  $.ajax ({
+    method: 'GET',
+    url: config.serverRoute + '/currentNote/' + self.props.username
+  }).done(function(data) {
+    self.setState( {list: data, displayList: true });
+  })
+}
+
+
 createNoteList(){
   var list = this.state.list;
   return list.sort((a,b)=> this.state.asc* (new Date(b.date)-new Date(a.date)))
@@ -37,16 +52,11 @@ createNoteList(){
   })
 }
 
-updateCurrentNotes(username){
-  var self = this;
-  username = username || self.props.username
-  $.ajax ({
-    method: 'GET',
-    url: config.serverRoute + '/currentNote/' + username
-  }).done(function(data) {
-    self.setState( {list: data} );
-  })
-}
+
+    hideNotesHistoryOnClick(){
+      this.setState( {displayList: false} )
+    }
+
 
 createNoteEvent(){
   var data = Object.assign({username: this.props.username}, this.state)
@@ -77,12 +87,13 @@ createNoteEvent(){
     		           <input type="button" className="button" id="createNote"
                      value="Add Notes" onClick={this.createNoteEvent.bind(this)} />
                    <input type="button" className="button" id="listTasks"
-                     value="List Notes History"
-                     onClick={()=>this.updateCurrentNotes.bind(this)} />
+                     value="List Notes"
+                     onClick={this.updateCurrentNotes.bind(this)} />
+                    <input type="button" className="button" value="Hide Notes" onClick={this.hideNotesHistoryOnClick.bind(this)} />
               </div>
           </form>
           <div>
-            <ul id="noteItem">{ this.createNoteList() }</ul>
+            {this.state.displayList === true ? <ul id="noteItem">{ this.createNoteList() }</ul> : ""}
           </div>
         </div>
       );

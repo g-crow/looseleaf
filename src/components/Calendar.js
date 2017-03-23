@@ -79,7 +79,7 @@ createCalendarEvent(){
           </div>)
       return (
         <div>
-            <div><h1>Big Events Calendar</h1></div>
+            <div><h1>Events Calendar</h1></div>
           <div>
             <ul id="calendarItem">{ this.createList() }</ul>
           </div>
@@ -94,9 +94,6 @@ createCalendarEvent(){
             <div className="buttons">
                  <input type="button" className="button" id="createNote"
                    value="Add Event" onClick={this.createCalendarEvent.bind(this)} />
-                 <input type="button" className="button" id="listTasks"
-                   value="List Calendar History"
-                   onClick={()=>this.updateCurrentCalendar.bind(this)} />
             </div>
           </form>
         </div>
