@@ -1,7 +1,7 @@
 body {
 	background-image: url("../images/png/ricepaper-5.png");
 	background-repeat: repeat;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Josefin Slab', serif;
 }
 
 #root {
@@ -26,15 +26,12 @@ nav li, nav li a {
 /* component classes */
 .comps {
 	overflow-y: scroll;
-	padding: 0px 20px;
-
 }
 
 
 /* component divs */
 
 #goals, #journal, #notepad, #todo, #calendar {
-	margin: 10px;
 	background-color: #ffffff;
 	border-radius: 10px;
 
@@ -49,6 +46,7 @@ nav li, nav li a {
 	float: left;
 	color: #3f6f70;
 	padding-left: 22px;
+	font-weight: 700;
 }
 
 }
@@ -95,8 +93,8 @@ textarea {
 	background-color: #ffffff;
 	resize: inline;
 	width: 95%;
-	font-family: 'Raleway', sans-serif;
-	font-size: 16px;
+	font-family: 'Josefin Slab', serif;
+	font-weight: 400;
 	outline: none;
 	resize: none;
 	overflow: auto;
@@ -118,7 +116,8 @@ textarea {
 	text-align: center;
 	text-decoration: none;
 	font-size: 14px;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Josefin Slab', serif;
+	font-weight: 700;
 }
 
 .glyphy {
@@ -132,7 +131,7 @@ textarea {
 	text-align: center;
 	text-decoration: none;
 	font-size: 20px;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Josefin Slab', serif;
 }
 
 .button:hover {

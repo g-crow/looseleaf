@@ -80,7 +80,7 @@ class Goals extends Component {
   render() {
     return (
       <div id="goals">
-        <div><h1>Goals</h1></div>
+        <div><h1 id="Ghead" >Goals</h1></div>
         <textarea placeholder={this.state.message}  className='immobile' value={this.state.entry} onChange={this.entryChange.bind(this)} />
         <input type="button" className="button immobile" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} />
         <div>
