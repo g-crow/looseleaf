@@ -115,7 +115,7 @@ if (this.state.entry === "") {
        <div>Loading...</div>
      )
      return (
-       <div className="paper-content">
+       <div>
          <div><h1>Journal Space [{this.getDate()}]</h1>
         </div>
          <div>

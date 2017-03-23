@@ -1,0 +1,146 @@
+body {
+	background-image: url("../images/png/ricepaper-5.png");
+	background-repeat: repeat;
+	font-family: 'Raleway', sans-serif;
+}
+
+#root {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+/* NAVIGATION */
+nav li, nav li a {
+	display: inline;
+	text-decoration: none;
+	font-size: 24px;
+	margin-right: 25px;
+
+}
+
+.active {
+	color: green;
+}
+
+/* component classes */
+.comps {
+	overflow-y: scroll;
+	padding: 0px 20px;
+
+}
+
+
+/* component divs */
+
+#goals, #journal, #notepad, #todo, #calendar {
+	margin: 10px;
+	background-color: #ffffff;
+	border-radius: 10px;
+
+}
+
+#login, #signup {
+	width: 60%;
+}
+
+#Ghead{
+	width: 25%;
+	float: left;
+	color: #3f6f70;
+	padding-left: 22px;
+}
+
+}
+#Goals {
+	background-color: #ffffff;
+	color: #3f6f70;
+	border-style: solid;
+	border-color: #3f6f70;
+	border-width: 4px;
+}
+
+#Gbutton {
+	float: right;
+	padding: 22px;
+}
+
+#Thead{
+	width: 25%;
+	float: left;
+	color: #3f6f70;
+	padding-left: 22px;
+}
+
+}
+#Toals {
+	background-color: #ffffff;
+	color: #3f6f70;
+	border-style: solid;
+	border-color: #3f6f70;
+	border-width: 4px;
+}
+
+#Tbutton {
+	float: right;
+	padding: 22px;
+}
+
+#looseleaf-logo {
+	padding: 10px 225px;
+}
+
+/* component elements */
+textarea {
+	background-color: #ffffff;
+	resize: inline;
+	width: 95%;
+	font-family: 'Raleway', sans-serif;
+	font-size: 16px;
+	outline: none;
+	resize: none;
+	overflow: auto;
+	border-color: Transparent;
+	border-style:none;
+}
+
+
+
+
+.button {
+	float: right;
+	clear: both;
+	background-color: #ffffff;
+	border: 2px solid #3f6f70;
+	border-radius: 8px;
+	color: #3f6f70;
+	padding: 5px 15px 15px 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14px;
+	font-family: 'Raleway', sans-serif;
+}
+
+.glyphy {
+	float: right;
+	clear: both;
+	background-color: #ffffff;
+	border: 2px solid #3f6f70;
+	border-radius: 65px;
+	color: #3f6f70;
+	padding: 5px 10px 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 20px;
+	font-family: 'Raleway', sans-serif;
+}
+
+.button:hover {
+	background-color: #3f6f70;
+	color: #ffffff;
+}
+
+#login .textField, #signup .textField {
+	margin: 5px 15px;
+	line-height: 25px;
+}
