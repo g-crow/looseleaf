@@ -41,9 +41,12 @@ entryChange(e) {
 
 createList(){
   var list = this.state.list;
-  return list.sort((a,b)=> this.state.asc* (new Date(b.date)-new Date(a.date)))
+  return list
+    .filter(({eventDate}) => eventDate)
+    .sort((a,b)=> this.state.asc* (new Date(a.eventDate)-new Date(b.eventDate)))
   .map(function(entry){
-    return (<li> {entry.eventDate}: {entry.entry} </li>)
+
+    return (<li> {moment(entry.eventDate).format('MMMM Do YYYY')}: {entry.entry} </li>)
   })
 }
 

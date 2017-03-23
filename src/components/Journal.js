@@ -11,7 +11,8 @@ class Journal extends Component {
      list: [],
      listToDisplay: [],
      displayList: true,
-     message: "Today something happened..."
+     message: "Today something happened...",
+     displayButton: true
    };
  }
 
@@ -50,12 +51,12 @@ class Journal extends Component {
        method: 'GET',
        url: config.serverRoute + '/JournalHistory/' + username
      }).done(function(data) {
-       self.setState( {listToDisplay: self.state.list, displayList: true} );
+       self.setState( {listToDisplay: self.state.list, displayList: true, displayButton: false} );
      })
    }
 
    hideJournalHistoryOnClick(){
-     this.setState( {displayList: false} )
+     this.setState( {displayList: false, displayButton: true} )
    }
 
 
@@ -124,8 +125,8 @@ if (this.state.entry === "") {
                  <textarea placeholder={this.state.message} value={this.state.entry} onChange={this.entryChange.bind(this)} />
                  <div className="buttons">
              <input type="button" className="button" id="createJournalEntry" value="Add Journal Entry" onClick={this.createJournalEntry.bind(this)} />
-                 <input type="button" className="button" value="View Journal History" onClick={this.updateJournalHistoryOnClick.bind(this)} />
-                 <input type="button" className="button" value="Hide Journal History" onClick={this.hideJournalHistoryOnClick.bind(this)} />
+                 {this.state.displayButton === true ? <input type="button" className="button" value="View Journal History" onClick={this.updateJournalHistoryOnClick.bind(this)} /> :
+                 <input type="button" className="button" value="Hide Journal History" onClick={this.hideJournalHistoryOnClick.bind(this)} /> }
            </div>
          </form>
        </div>

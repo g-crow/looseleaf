@@ -39,6 +39,10 @@ class Signup extends Component {
 
   createUserEvent(){
 
+    if (this.state.firstName === "" || this.state.lastName ==="" || this.state.email ==="" || this.state.username==="" || this.state.password ==="" || this.state.confirmPass==="") {
+      alert("All fields required!")
+    } else {
+
     if (this.state.password === this.state.confirmPass) {
       var self=this;
       $.ajax ({
@@ -60,6 +64,7 @@ class Signup extends Component {
       this.setState ({test: true})
     } console.log(self.state.username);
   }
+}
 
   render() {
     return (

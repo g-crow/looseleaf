@@ -11,7 +11,8 @@ class Notepad extends Component {
       list: [],
       displayList: true,
       asc: 1,
-      message: "For future reference..."
+      message: "For future reference...",
+      showButton: true
     };
   }
 
@@ -40,7 +41,7 @@ updateCurrentNotes(username){
     method: 'GET',
     url: config.serverRoute + '/currentNote/' + self.props.username
   }).done(function(data) {
-    self.setState( {list: data, displayList: true });
+    self.setState( {list: data, displayList: true, showButton: false });
   })
 }
 
@@ -55,7 +56,7 @@ createNoteList(){
 
 
     hideNotesHistoryOnClick(){
-      this.setState( {displayList: false} )
+      this.setState( {displayList: false, showButton: true} )
     }
 
     blankEntry () {
@@ -95,10 +96,10 @@ if (this.state.entry === "" ){
 			        <div className="buttons">
     		           <input type="button" className="button" id="createNote"
                      value="Add Notes" onClick={this.createNoteEvent.bind(this)} />
-                   <input type="button" className="button" id="listTasks"
-                     value="List Notes"
-                     onClick={this.updateCurrentNotes.bind(this)} />
-                    <input type="button" className="button" value="Hide Notes" onClick={this.hideNotesHistoryOnClick.bind(this)} />
+                   {this.state.showButton === true ? <input type="button" className="button" id="listTasks"
+                     value="Show Notes"
+                     onClick={this.updateCurrentNotes.bind(this)} /> :
+                    <input type="button" className="button" value="Hide Notes" onClick={this.hideNotesHistoryOnClick.bind(this)} />}
               </div>
           </form>
           <div>

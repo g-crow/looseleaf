@@ -22,6 +22,12 @@ class Login extends Component{
 
    validateUser(){
      var self = this;
+
+     if (this.state.username === "" || this.state.password ==="") {
+       alert("All fields required!")
+     } else {
+
+
     $.ajax ({
       method: 'POST',
       url: config.serverRoute + '/authenticate',
@@ -32,6 +38,7 @@ class Login extends Component{
         browserHistory.push('/Artboard')
       })
     }
+  }
 
   render(){
     return(
