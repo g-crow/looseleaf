@@ -12,13 +12,15 @@ class Calendar extends Component {
       date: Date.now(),
       list: [],
       asc: 1,
-      startDate: moment()
+      startDate: moment(),
     };
   }
-// 
-// handleChange(){
-//   this.setState( {startDate: } )
-// }
+
+handleChange(date){
+  this.setState({
+       startDate: date
+     });
+}
 
   componentWillMount(){
   if(this.props.username){
@@ -85,9 +87,9 @@ createCalendarEvent(){
           	<input type="text" placeholder="What's coming up?" value={this.state.entry}
               onChange={this.entryChange.bind(this)} />
 
-              <DatePicker inline
+              <DatePicker
           selected={this.state.startDate}
-          onChange={this.handleChange}/>
+          onChange={this.handleChange} />
 
             <div className="buttons">
                  <input type="button" className="button" id="createNote"
