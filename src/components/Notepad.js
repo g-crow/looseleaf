@@ -88,7 +88,7 @@ if (this.state.entry === "" ){
             Loading...
           </div>)
       return (
-        <div id="notepad">
+        <div id="notepad" className="paper-content">
           <div><h1>Notepad</h1></div>
           <form>
 			        <textarea placeholder={this.state.message} value={this.state.entry}
