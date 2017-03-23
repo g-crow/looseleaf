@@ -42,7 +42,7 @@ createList(){
   var list = this.state.list;
   return list.sort((a,b)=> this.state.asc* (new Date(b.date)-new Date(a.date)))
   .map(function(entry){
-    return (<li> {entry.entry} </li>)
+    return (<li> {entry.eventDate}: {entry.entry} </li>)
   })
 }
 
@@ -79,7 +79,7 @@ createCalendarEvent(){
           </div>)
       return (
         <div>
-            <div><h1>Calendar</h1></div>
+            <div><h1>Big Events Calendar</h1></div>
           <div>
             <ul id="calendarItem">{ this.createList() }</ul>
           </div>
@@ -88,8 +88,8 @@ createCalendarEvent(){
               onChange={this.entryChange.bind(this)} />
 
               <DatePicker
-          selected={this.state.startDate}
-          onChange={this.handleChange} />
+                selected={this.state.startDate} inline
+                  onChange={this.handleChange.bind(this)} />
 
             <div className="buttons">
                  <input type="button" className="button" id="createNote"

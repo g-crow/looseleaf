@@ -6,6 +6,7 @@ module.exports = mongoose.model('Calendar', Schema ({
     username: String,
     entry: { type: String, required: true},
     date: Date,
+    eventDate: String,
     current: Boolean
 
 }))

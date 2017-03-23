@@ -7,6 +7,7 @@ function createCalendarEvent(req, res){
     	calendar.entry = req.body.entry;
     	calendar.date = Date.now();
       calendar.current = true
+			calendar.eventDate =req.body.startDate.toString()
 
   calendar.save(function(err) {
     if(err) throw err;
