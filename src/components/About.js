@@ -4,7 +4,7 @@ class About extends Component {
 
   render() {
     return (
-      <div>
+      <div id="about">
         <h1>About Looseleaf 1.0</h1>
         <div>
           Looseleaf offers the freedom of a blank page without the bulk of a notebook. Its customizable interface combines our favorite features of traditional paper and virtual planning tools, allowing users to create a personal planner best suited to their needs and aesthetic preferences. Resizable, drag-and-drop components such as lists and calendars help users organize their day-to-day, while journal and notes sections provide space to reflect, store snippets, and track progress. Designed to increase headspace, Looseleaf's minimalist dashboard displays only current items. Past entries are archived for future reference.
