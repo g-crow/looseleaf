@@ -69,7 +69,7 @@ class Signup extends Component {
   render() {
     return (
       <div id="signup">
-          <form>
+          <div id="login-singup">
       			<input type="text" className="textField" id="firstName" placeholder="First name" value={this.state.firstName} onChange={this.firstNameChange.bind(this)} />
       			<input type="text" className="textField" id="lastName" placeholder="Last name" value={this.state.lastName} onChange={this.lastNameChange.bind(this)} />
       			<input type="text" className="textField" id="username" placeholder="Username" value={this.state.username} onChange={this.usernameChange.bind(this)} />
@@ -79,7 +79,7 @@ class Signup extends Component {
             <div class="buttons">
               <input type="button" className="button" id="createAccount" value="Create account" onClick={this.createUserEvent.bind(this)} />
             </div>
-      		</form>
+      		</div>
         { this.state.test ? (<div id="wrongPassword">Sorry, password doesn't match. Try again.</div>) : (<div />) }
       </div>
 	  );

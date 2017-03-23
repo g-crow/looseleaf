@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 var config = require('../../config');
+import { Glyphicon } from 'react-bootstrap';
 
 class Notepad extends Component {
   constructor(props) {
@@ -88,20 +89,24 @@ if (this.state.entry === "" ){
             Loading...
           </div>)
       return (
-        <div id="notepad" className="paper-content">
-          <div><h1>Notepad</h1></div>
-          <form>
-			        <textarea placeholder={this.state.message} value={this.state.entry}
+
+        <div id="notepad" >
+            <div><h1 id="Nhead">Notepad</h1></div>
+
+              <div>
+            <textarea placeholder={this.state.message} value={this.state.entry}
                 onChange={this.entryChange.bind(this)} />
-			        <div className="buttons">
-    		           <input type="button" className="button" id="createNote"
-                     value="Add Notes" onClick={this.createNoteEvent.bind(this)} />
-                   {this.state.showButton === true ? <input type="button" className="button" id="listTasks"
-                     value="Show Notes"
-                     onClick={this.updateCurrentNotes.bind(this)} /> :
-                    <input type="button" className="button" value="Hide Notes" onClick={this.hideNotesHistoryOnClick.bind(this)} />}
+			      <div className="buttons">
+    		        <button className="button" id="createNote"
+                value="Add Notes" className="glyphy button" onClick={this.createNoteEvent.bind(this)} ><Glyphicon glyph="plus" /></button>
+
+                {this.state.showButton === true ? <button className="glyphy button"
+                     onClick={this.updateCurrentNotes.bind(this)}> <Glyphicon glyph="menu-up" /> </button> :
+                    <button className="button glyphy" onClick={this.hideNotesHistoryOnClick.bind(this)} ><Glyphicon glyph="menu-down" /></button>}
+
+
+                  </div>
               </div>
-          </form>
           <div>
             {this.state.displayList === true ? <ul id="noteItem">{ this.createNoteList() }</ul> : ""}
           </div>

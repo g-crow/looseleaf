@@ -2,6 +2,15 @@ body {
 	background-image: url("../images/png/ricepaper-5.png");
 	background-repeat: repeat;
 	font-family: 'Josefin Slab', serif;
+	font-size: 20px;
+	color: #555555;
+
+}
+
+h1 {
+	padding-left: 22px;
+	font-weight: 700;
+	font-size: 26px;
 }
 
 #root {
@@ -11,21 +20,34 @@ body {
 }
 
 /* NAVIGATION */
+nav {
+	float: left;
+	width: 50%;
+	padding: 70px 0 0 0;
+}
+
 nav li, nav li a {
 	display: inline;
 	text-decoration: none;
 	font-size: 24px;
 	margin-right: 25px;
+	color: #555555;
 
 }
 
+#intro{
+	clear: both;
+	width: 100%;
+}
+
 .active {
-	color: green;
+	color: #04756F;
 }
 
 /* component classes */
 .comps {
 	overflow-y: scroll;
+	box-shadow: 0 2px 8px rgba(0,0,0,.3);
 }
 
 
@@ -34,6 +56,7 @@ nav li, nav li a {
 #goals, #journal, #notepad, #todo, #calendar {
 	background-color: #ffffff;
 	border-radius: 10px;
+	padding: 0px 10px;
 
 }
 
@@ -42,14 +65,33 @@ nav li, nav li a {
 }
 
 #Ghead{
-	width: 25%;
-	float: left;
-	color: #3f6f70;
-	padding-left: 22px;
-	font-weight: 700;
+	color: #04756F;
 }
 
+#Thead {
+	color: #FF8C00;
 }
+
+#Nhead {
+	color:#FF2D00;
+}
+
+#Jhead{
+	color: #8b0202;
+}
+
+h2{
+	color: #8b0202;
+	font-weight: 700;
+	font-size: 18px;
+	padding-left: 22px;
+}
+
+#Chead{
+	color: #621253;
+}
+
+
 #Goals {
 	background-color: #ffffff;
 	color: #3f6f70;
@@ -63,13 +105,6 @@ nav li, nav li a {
 	padding: 22px;
 }
 
-#Thead{
-	width: 25%;
-	float: left;
-	color: #3f6f70;
-	padding-left: 22px;
-}
-
 }
 #Toals {
 	background-color: #ffffff;
@@ -80,16 +115,18 @@ nav li, nav li a {
 }
 
 #Tbutton {
-	float: right;
+	/*float: right;*/
 	padding: 22px;
 }
 
 #looseleaf-logo {
-	padding: 10px 225px;
+	padding: 20px 10px;
+	float: left;
+	width: 50%;
 }
 
 /* component elements */
-textarea {
+textarea, .singleText{
 	background-color: #ffffff;
 	resize: inline;
 	width: 95%;
@@ -100,10 +137,15 @@ textarea {
 	overflow: auto;
 	border-color: Transparent;
 	border-style:none;
+	clear: both;
 }
 
+input {
+	border: none;
+	border-style:none;
+}
 
-
+/*
 
 .button {
 	float: right;
@@ -118,15 +160,15 @@ textarea {
 	font-size: 14px;
 	font-family: 'Josefin Slab', serif;
 	font-weight: 700;
-}
+}*/
 
 .glyphy {
 	float: right;
 	clear: both;
-	background-color: #ffffff;
-	border: 2px solid #3f6f70;
+	background-color: #FFFFFF;
+	border: 2px solid #555555;
 	border-radius: 65px;
-	color: #3f6f70;
+	color: #555555;
 	padding: 5px 10px 5px 10px;
 	text-align: center;
 	text-decoration: none;
@@ -140,6 +182,19 @@ textarea {
 }
 
 #login .textField, #signup .textField {
-	margin: 5px 15px;
+	margin: 5px 5px 5px 0px;
 	line-height: 25px;
+}
+
+#artboard {
+	clear: both;
+}
+
+#login-signup {
+	padding: 20px 0px;
+}
+
+#freedom {
+	font-family: 'Josefin Slab', serif;
+	font-style: italic;
 }

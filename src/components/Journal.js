@@ -1,6 +1,7 @@
  import React, { Component } from 'react';
 import $ from 'jquery';
 var config = require('../../config');
+import { Glyphicon } from 'react-bootstrap';
 
 class Journal extends Component {
  constructor(props) {
@@ -116,19 +117,21 @@ if (this.state.entry === "") {
      )
      return (
        <div>
-         <div><h1>Journal Space [{this.getDate()}]</h1>
+         <div><h1 id="Jhead">Journal Space </h1> <h2>{this.getDate()}</h2>
         </div>
          <div>
            {this.state.displayList === true ? <ul id="journalHistory">{ this.createJournalHistory() }</ul> : ""}
          </div>
-         <form>
+
                  <textarea placeholder={this.state.message} value={this.state.entry} onChange={this.entryChange.bind(this)} />
                  <div className="buttons">
-             <input type="button" className="button" id="createJournalEntry" value="Add Journal Entry" onClick={this.createJournalEntry.bind(this)} />
-                 {this.state.displayButton === true ? <input type="button" className="button" value="View Journal History" onClick={this.updateJournalHistoryOnClick.bind(this)} /> :
-                 <input type="button" className="button" value="Hide Journal History" onClick={this.hideJournalHistoryOnClick.bind(this)} /> }
+             <button className="glyphy button" id="createJournalEntry" value="Add Journal Entry" onClick={this.createJournalEntry.bind(this)} > <Glyphicon glyph="plus" /> </button>
+
+                 {this.state.displayButton === true ? <button className="glyphy button" onClick={this.updateJournalHistoryOnClick.bind(this)} > <Glyphicon glyph="menu-down" /> </button> :
+                 <button className="button glyphy" onClick={this.hideJournalHistoryOnClick.bind(this)} > <Glyphicon glyph="menu-up" /> </button> }
+
            </div>
-         </form>
+
        </div>
      );
    }

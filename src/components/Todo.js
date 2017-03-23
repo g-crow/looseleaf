@@ -86,10 +86,10 @@ createTodoEvent(){
         </div>)
       return (
         <div id="todo">
-            <div><h1>Tasks</h1></div>
+            <div><h1 id="Thead">Tasks</h1></div>
           <input type="text" placeholder={this.state.message} value={this.state.entry} onChange={this.entryChange.bind(this)} />
-          <input type="submit" className="button" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
-          <button className="button" className="glyphy" type='submit' onClick={()=>this.setState({asc: this.state.asc * -1})}><Glyphicon glyph="sort" /></button>
+          <button className="button glyphy" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} ><Glyphicon glyph="plus" /></button>
+          <button className="button glyphy" type='submit' onClick={()=>this.setState({asc: this.state.asc * -1})}><Glyphicon glyph="sort" /></button>
           <div>
             <span id="todoItems">{this.createList()}</span>
           </div>

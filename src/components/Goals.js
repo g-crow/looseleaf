@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 var config = require('../../config');
+import { Glyphicon } from 'react-bootstrap';
 
 class Goals extends Component {
   constructor(props) {
@@ -81,8 +82,8 @@ class Goals extends Component {
     return (
       <div id="goals">
         <div><h1 id="Ghead" >Goals</h1></div>
-        <textarea placeholder={this.state.message}  className='immobile' value={this.state.entry} onChange={this.entryChange.bind(this)} />
-        <input type="button" className="button immobile" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} />
+        <textarea placeholder={this.state.message}  value={this.state.entry} onChange={this.entryChange.bind(this)} />
+        <button className="glyphy  button" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} ><Glyphicon glyph="plus" /></button>
         <div>
           <ul id="goalItem">{ this.createGoalList() }</ul>
         </div>

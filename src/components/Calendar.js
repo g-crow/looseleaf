@@ -3,6 +3,7 @@ import $ from 'jquery';
 var config = require('../../config');
 var DatePicker = require('react-datepicker');
 var moment = require('moment');
+import { Glyphicon } from 'react-bootstrap';
 
 class Calendar extends Component {
   constructor(props) {
@@ -91,24 +92,23 @@ createCalendarEvent(){
             Loading...
           </div>)
       return (
-        <div>
-            <div><h1>Events Calendar</h1></div>
-          <div>
-            <ul id="calendarItem">{ this.createList() }</ul>
-          </div>
-          <form>
-          	<input type="text" placeholder={this.state.message} value={this.state.entry}
+        <div id="calendar2">
+            <div><h1 id="Chead">Events Calendar</h1></div>
+
+          	<input type="text" className="singleText" placeholder={this.state.message} value={this.state.entry}
               onChange={this.entryChange.bind(this)} />
 
               <DatePicker
-                selected={this.state.startDate} inline
+                selected={this.state.startDate}
                   onChange={this.handleChange.bind(this)} />
 
             <div className="buttons">
-                 <input type="button" className="button" id="createNote"
-                   value="Add Event" onClick={this.createCalendarEvent.bind(this)} />
+                 <button className="glyphy button" id="createNote"
+                 onClick={this.createCalendarEvent.bind(this)}><Glyphicon glyph="plus" /></button>
             </div>
-          </form>
+            <div>
+              <ul id="calendarItem">{ this.createList() }</ul>
+            </div>
         </div>
       );
     }

@@ -44,8 +44,8 @@ class Login extends Component{
   render(){
     return(
       <div id="login">
-        Looseleaf offers the freedom of a blank page without the bulk and constraints of a paper planner.
-          <form>
+      <div id="intro">  Looseleaf offers the <span id="freedom">freedom of a blank page </span>without the bulk and constraints of a paper planner. </div>
+          <div id="login-signup">
       			<input type="text" className="textField" placeholder="Enter username"
             value={this.state.username} onChange={this.usernameChange.bind(this)} />
       			<input type="password" className="textField" placeholder="Enter password"
@@ -53,7 +53,7 @@ class Login extends Component{
           <div class="buttons">
             <input type="button" className="button" value="Login" onClick={this.validateUser.bind(this)} />
           </div>
-          </form>
+        </div>
       </div>
     );
   }
