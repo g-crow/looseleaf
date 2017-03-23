@@ -13,6 +13,7 @@ class Calendar extends Component {
       list: [],
       asc: 1,
       startDate: moment(),
+      message: "What's coming up?"
     };
   }
 
@@ -57,7 +58,15 @@ updateCurrentCalendar(username){
   })
 }
 
+blankEntry () {
+  this.state.message === "What's coming up?" ? this.setState( {message: "Time passes irrevocably."} ) : this.setState( {message:  "What's coming up?"} )
+}
+
+
 createCalendarEvent(){
+  if (this.state.entry === "") {
+    this.blankEntry();
+  } else {
   var data = Object.assign({username: this.props.username}, this.state)
   $.ajax ({
     method: 'POST',
@@ -69,6 +78,7 @@ createCalendarEvent(){
     this.setState({ entry:'' });
     this.updateCurrentCalendar();
 })
+}
 }
 
     render() {
@@ -84,7 +94,7 @@ createCalendarEvent(){
             <ul id="calendarItem">{ this.createList() }</ul>
           </div>
           <form>
-          	<input type="text" placeholder="What's coming up?" value={this.state.entry}
+          	<input type="text" placeholder={this.state.message} value={this.state.entry}
               onChange={this.entryChange.bind(this)} />
 
               <DatePicker

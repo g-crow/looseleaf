@@ -10,7 +10,8 @@ class Todo extends Component {
       entry: '',
       date: Date.now(),
       list: [],
-      asc: 1
+      asc: 1,
+      message: "To-do item..."
     };
   }
 
@@ -53,17 +54,28 @@ updateCurrentTodo(username){
   })
 }
 
+
+blankEntry () {
+  this.state.message === "To-do item..." ? this.setState( {message: "Be clenched, curious."} ) : this.setState( {message:  "To-do item..."} )
+}
+
+
 createTodoEvent(){
-  var data = Object.assign({username: this.props.username}, this.state)
-  $.ajax ({
-    method: 'POST',
-    url: config.serverRoute + '/createtodo',
-    data: JSON.stringify(data),
-    contentType: 'application/json'
-  }).done(()=>{
-    this.setState({ entry:'' });
-    this.updateCurrentTodo();
-  }) //clear form after entry
+
+  if (this.state.entry === "") {
+    this.blankEntry();
+  } else {
+      var data = Object.assign({username: this.props.username}, this.state)
+      $.ajax ({
+      method: 'POST',
+      url: config.serverRoute + '/createtodo',
+      data: JSON.stringify(data),
+      contentType: 'application/json'
+      }).done(()=>{
+      this.setState({ entry:'' });
+      this.updateCurrentTodo();
+      }) //clear form after entry
+  }
 }
 
   render() {
@@ -75,7 +87,7 @@ createTodoEvent(){
       return (
         <div id="todo">
             <div><h1>Tasks</h1></div>
-          <input type="text" placeholder="to do item" value={this.state.entry} onChange={this.entryChange.bind(this)} />
+          <input type="text" placeholder={this.state.message} value={this.state.entry} onChange={this.entryChange.bind(this)} />
           <input type="submit" className="button" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} />
           <button className="button" className="glyphy" type='submit' onClick={()=>this.setState({asc: this.state.asc * -1})}><Glyphicon glyph="sort" /></button>
           <div>

@@ -10,7 +10,8 @@ class Notepad extends Component {
       date: Date.now(),
       list: [],
       displayList: true,
-      asc: 1
+      asc: 1,
+      message: "For future reference..."
     };
   }
 
@@ -57,18 +58,26 @@ createNoteList(){
       this.setState( {displayList: false} )
     }
 
+    blankEntry () {
+      this.state.message === "For future reference..." ? this.setState( {message: "To pay attention, this is our endless and proper work." }) : this.setState( {message:  "For future reference..."} )
+    }
 
 createNoteEvent(){
-  var data = Object.assign({username: this.props.username}, this.state)
-  $.ajax ({
-    method: 'POST',
-    url: config.serverRoute + '/createnote',
-    data: JSON.stringify(data),
-    contentType: 'application/json'
-  }).done(()=>{
-    this.setState({ entry:'' });
-    this.updateCurrentNotes();
-})
+if (this.state.entry === "" ){
+  this.blankEntry();
+} else {
+
+    var data = Object.assign({username: this.props.username}, this.state)
+    $.ajax ({
+      method: 'POST',
+      url: config.serverRoute + '/createnote',
+      data: JSON.stringify(data),
+      contentType: 'application/json'
+    }).done(()=>{
+      this.setState({ entry:'' });
+      this.updateCurrentNotes();
+  })
+  }
 }
 
     render() {
@@ -81,7 +90,7 @@ createNoteEvent(){
         <div id="notepad">
           <div><h1>Notepad</h1></div>
           <form>
-			        <textarea placeholder="A place for notes!" value={this.state.entry}
+			        <textarea placeholder={this.state.message} value={this.state.entry}
                 onChange={this.entryChange.bind(this)} />
 			        <div className="buttons">
     		           <input type="button" className="button" id="createNote"

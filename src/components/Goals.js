@@ -10,7 +10,8 @@ class Goals extends Component {
       date: Date.now(),
       current: true,
       list: [],
-      asc: 1
+      asc: 1,
+      message: "I aspire to..."
     };
   }
 
@@ -52,9 +53,17 @@ class Goals extends Component {
     })
   }
 
+  blankEntry () {
+    this.state.message === "I aspire to..." ? this.setState( {message: "Tell me, what is it you plan to do with your one wild and precious life?" } ) : this.setState( {message:  "I aspire to..."} )
+  }
+
   createGoalEvent(e){
-    console.log('adding goal')
     e.preventDefault()
+
+    if (this.state.entry === ""){
+      this.blankEntry();
+    } else {
+
     var data = Object.assign({username: this.props.username}, this.state)
     $.ajax ({
       method: 'POST',
@@ -66,12 +75,13 @@ class Goals extends Component {
       this.updateGoals();
     })
   }
+}
 
   render() {
     return (
       <div id="goals">
         <div><h1>Goals</h1></div>
-        <textarea placeholder="goal item"  className='immobile' value={this.state.entry} onChange={this.entryChange.bind(this)} />
+        <textarea placeholder={this.state.message}  className='immobile' value={this.state.entry} onChange={this.entryChange.bind(this)} />
         <input type="button" className="button immobile" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} />
         <div>
           <ul id="goalItem">{ this.createGoalList() }</ul>

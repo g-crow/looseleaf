@@ -8,10 +8,10 @@ class Journal extends Component {
    this.state = {
      entry: '',
      date: Date.now(),
-     current: true,
      list: [],
      listToDisplay: [],
-     displayList: true
+     displayList: true,
+     message: "Today something happened..."
    };
  }
 
@@ -68,7 +68,15 @@ createJournalHistory(){
 }
 
 
+blankEntry () {
+  this.state.message === "Today something happened..." ? this.setState( {message: "Do not be too timid and squeamish about your actions."} ) : this.setState( {message:  "Today something happened..."} )
+}
+
 createJournalEntry(){
+if (this.state.entry === "") {
+  this.blankEntry();
+} else {
+
  var data = Object.assign({username: this.props.username}, this.state)
  $.ajax ({
    method: 'POST',
@@ -81,6 +89,7 @@ createJournalEntry(){
  })
 }
 
+}
 
   getDate() {
     var today = new Date();
@@ -112,11 +121,11 @@ createJournalEntry(){
            {this.state.displayList === true ? <ul id="journalHistory">{ this.createJournalHistory() }</ul> : ""}
          </div>
          <form>
-                 <textarea placeholder="Today something happened..." value={this.state.entry} onChange={this.entryChange.bind(this)} />
+                 <textarea placeholder={this.state.message} value={this.state.entry} onChange={this.entryChange.bind(this)} />
                  <div className="buttons">
              <input type="button" className="button" id="createJournalEntry" value="Add Journal Entry" onClick={this.createJournalEntry.bind(this)} />
-                 <input type="button" className="button" value="View History" onClick={this.updateJournalHistoryOnClick.bind(this)} />
-                 <input type="button" className="button" value="Hide History" onClick={this.hideJournalHistoryOnClick.bind(this)} />
+                 <input type="button" className="button" value="View Journal History" onClick={this.updateJournalHistoryOnClick.bind(this)} />
+                 <input type="button" className="button" value="Hide Journal History" onClick={this.hideJournalHistoryOnClick.bind(this)} />
            </div>
          </form>
        </div>
