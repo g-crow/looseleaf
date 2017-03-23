@@ -23,7 +23,8 @@ class Login extends Component{
    validateUser(){
      var self = this;
 
-     if (this.state.username === "" || this.state.password ==="") {
+     if (this.state.username === "" || this.state.password ==="")
+     {
        alert("All fields required!")
      } else {
 
@@ -43,6 +44,7 @@ class Login extends Component{
   render(){
     return(
       <div id="login">
+        Looseleaf offers the freedom of a blank page without the bulk and constraints of a paper planner.
           <form>
       			<input type="text" className="textField" placeholder="Enter username"
             value={this.state.username} onChange={this.usernameChange.bind(this)} />
