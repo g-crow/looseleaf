@@ -81,7 +81,7 @@ class Goals extends Component {
   render() {
     return (
       <div id="goals">
-        <div><h1 id="Ghead" >Goals</h1></div>
+        <div><h1 id="Ghead" >Today</h1></div>
         <textarea placeholder={this.state.message}  value={this.state.entry} onChange={this.entryChange.bind(this)} />
         <button className="glyphy  button" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} ><Glyphicon glyph="plus" /></button>
         <div>
