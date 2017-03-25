@@ -14,7 +14,9 @@ class Calendar extends Component {
       list: [],
       asc: 1,
       startDate: moment(),
-      message: "What's coming up?"
+      message: "What's coming up?",
+      displayList: true,
+      showButton: false
     };
   }
 
@@ -56,10 +58,14 @@ updateCurrentCalendar(username){
    username = username || self.props.username
   $.ajax ({
     method: 'GET',
-    url: config.serverRoute + '/currentCalendar/' + username
+    url: config.serverRoute + '/currentCalendar/' + self.props.username
   }).done(function(data) {
-    self.setState( {list: data} );
+    self.setState( {list: data, displayList: true, showButton: false });
   })
+}
+
+hideCalendarHistoryOnClick(){
+  this.setState( {displayList: false, showButton: true} )
 }
 
 blankEntry () {
@@ -105,9 +111,14 @@ createCalendarEvent(){
             <div className="buttons">
                  <button className="glyphy button" id="createNote"
                  onClick={this.createCalendarEvent.bind(this)}><Glyphicon glyph="plus" /></button>
+
+                 {this.state.showButton === true ? <button className="glyphy button"
+                  onClick={this.updateCurrentCalendar.bind(this)}> <Glyphicon glyph="menu-up" /> </button> :
+                  <button className="button glyphy" onClick={this.hideCalendarHistoryOnClick.bind(this)} ><Glyphicon glyph="menu-down" /></button>}
+
             </div>
             <div>
-              <ul id="calendarItem">{ this.createList() }</ul>
+              {this.state.displayList === true ? <ul id="calendarItem">{ this.createList() }</ul> : ""}
             </div>
         </div>
       );

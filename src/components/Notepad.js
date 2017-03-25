@@ -13,7 +13,7 @@ class Notepad extends Component {
       displayList: true,
       asc: 1,
       message: "For future reference...",
-      showButton: true
+      showButton: false
     };
   }
 

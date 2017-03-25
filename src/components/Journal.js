@@ -119,9 +119,6 @@ if (this.state.entry === "") {
        <div>
          <div><h1 id="Jhead">Journal Space </h1> <h2>{this.getDate()}</h2>
         </div>
-         <div>
-           {this.state.displayList === true ? <ul id="journalHistory">{ this.createJournalHistory() }</ul> : ""}
-         </div>
 
                  <textarea placeholder={this.state.message} value={this.state.entry} onChange={this.entryChange.bind(this)} />
                  <div className="buttons">
@@ -130,6 +127,9 @@ if (this.state.entry === "") {
                  {this.state.displayButton === true ? <button className="glyphy button" onClick={this.updateJournalHistoryOnClick.bind(this)} > <Glyphicon glyph="menu-down" /> </button> :
                  <button className="button glyphy" onClick={this.hideJournalHistoryOnClick.bind(this)} > <Glyphicon glyph="menu-up" /> </button> }
 
+           </div>
+           <div>
+             {this.state.displayList === true ? <ul id="journalHistory">{ this.createJournalHistory() }</ul> : ""}
            </div>
 
        </div>

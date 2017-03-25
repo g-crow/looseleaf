@@ -27,7 +27,7 @@ nav li, nav li a {
 .comps {
 	border-style: solid;
 	border-color: black;
-	overflow-y: scroll;
+	/*overflow-y: scroll;*/
 	background-color:
 	;
 }

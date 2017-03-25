@@ -44,7 +44,7 @@ class Login extends Component{
   render(){
     return(
       <div id="login">
-      <div id="intro">  Looseleaf offers the <span id="freedom">freedom of a blank page </span>without the bulk and constraints of a paper planner. </div>
+      <div id="intro">  Looseleaf offers the <span id="freedom">freedom</span>of a blank page without the limitations of a paper planner. </div>
           <div id="login-signup">
       			<input type="text" className="textField" placeholder="Enter username"
             value={this.state.username} onChange={this.usernameChange.bind(this)} />
