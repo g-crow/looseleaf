@@ -11,7 +11,9 @@ class Todo extends Component {
       date: Date.now(),
       list: [],
       asc: 1,
-      message: "To-do item..."
+      message: "To-do item...",
+      displayList: true,
+      displayButton: true
     };
   }
 
@@ -47,10 +49,10 @@ updateCurrentTodo(username){
   console.log('updating todos for ' + username)
   $.ajax ({
     method: 'GET',
-    url: config.serverRoute + '/currentTodos/' + username
+    url: config.serverRoute + '/currentTodos/' + self.props.username
   }).done(function(data) {
     console.log('All the data', [])
-    self.setState({list: data} );
+    self.setState({list: data, displayList: true, displayButton: false}  );
   })
 }
 
@@ -59,6 +61,9 @@ blankEntry () {
   this.state.message === "To-do item..." ? this.setState( {message: "Be clenched, curious."} ) : this.setState( {message:  "To-do item..."} )
 }
 
+hideToDoOnClick(){
+  this.setState( {displayList: false, displayButton: true} )
+}
 
 createTodoEvent(){
 
@@ -90,8 +95,10 @@ createTodoEvent(){
           <input type="text" placeholder={this.state.message} value={this.state.entry} onChange={this.entryChange.bind(this)} />
           <button className="button glyphy" id="createTodo" value="Add task" onClick={this.createTodoEvent.bind(this)} ><Glyphicon glyph="plus" /></button>
           <button className="button glyphy" type='submit' onClick={()=>this.setState({asc: this.state.asc * -1})}><Glyphicon glyph="sort" /></button>
+          {this.state.displayButton === true ? <button className="glyphy button" onClick={this.updateCurrentTodo.bind(this)} > <Glyphicon glyph="menu-up" /> </button> :
+          <button className="button glyphy" onClick={this.hideToDoOnClick.bind(this)} > <Glyphicon glyph="menu-down" /> </button> }
           <div>
-            <span id="todoItems">{this.createList()}</span>
+            {this.state.displayList === true ?<span id="todoItems">{this.createList()}</span> : ""}
           </div>
         </div>
       );

@@ -124,8 +124,8 @@ if (this.state.entry === "") {
                  <div className="buttons">
              <button className="glyphy button" id="createJournalEntry" value="Add Journal Entry" onClick={this.createJournalEntry.bind(this)} > <Glyphicon glyph="plus" /> </button>
 
-                 {this.state.displayButton === true ? <button className="glyphy button" onClick={this.updateJournalHistoryOnClick.bind(this)} > <Glyphicon glyph="menu-down" /> </button> :
-                 <button className="button glyphy" onClick={this.hideJournalHistoryOnClick.bind(this)} > <Glyphicon glyph="menu-up" /> </button> }
+                 {this.state.displayButton === true ? <button className="glyphy button" onClick={this.updateJournalHistoryOnClick.bind(this)} > <Glyphicon glyph="menu-up" /> </button> :
+                 <button className="button glyphy" onClick={this.hideJournalHistoryOnClick.bind(this)} > <Glyphicon glyph="menu-down" /> </button> }
 
            </div>
            <div>

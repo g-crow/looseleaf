@@ -12,7 +12,9 @@ class Goals extends Component {
       current: true,
       list: [],
       asc: 1,
-      message: "I aspire to..."
+      message: "I aspire to...",
+      displayButton: true,
+      displayList: true
     };
   }
 
@@ -44,18 +46,23 @@ class Goals extends Component {
   }
 
   updateGoals(username){
+
     var self = this;
     username = username || self.props.username
     $.ajax ({
       method: 'GET',
-      url: config.serverRoute + '/currentgoals/' + username
+      url: config.serverRoute + '/currentgoals/' + self.props.username
     }).done(function(data) {
-      self.setState( {list: data} );
+       self.setState( {list: data, displayList: true, displayButton: false} );
     })
   }
 
   blankEntry () {
     this.state.message === "I aspire to..." ? this.setState( {message: "Tell me, what is it you plan to do with your one wild and precious life?" } ) : this.setState( {message:  "I aspire to..."} )
+  }
+
+  hideGoalsOnClick(){
+    this.setState( {displayList: false, displayButton: true} )
   }
 
   createGoalEvent(e){
@@ -81,11 +88,13 @@ class Goals extends Component {
   render() {
     return (
       <div id="goals">
-        <div><h1 id="Ghead" >Today</h1></div>
+        <div><h1 id="Ghead" >Goals</h1></div>
         <textarea placeholder={this.state.message}  value={this.state.entry} onChange={this.entryChange.bind(this)} />
         <button className="glyphy  button" id="createGoal" value="Add goal" onClick={this.createGoalEvent.bind(this)} ><Glyphicon glyph="plus" /></button>
+        {this.state.displayButton === true ? <button className="glyphy button" onClick={this.updateGoals.bind(this)} > <Glyphicon glyph="menu-up" /> </button> :
+        <button className="button glyphy" onClick={this.hideGoalsOnClick.bind(this)} > <Glyphicon glyph="menu-down" /> </button> }
         <div>
-          <ul id="goalItem">{ this.createGoalList() }</ul>
+        {this.state.displayList === true ? <ul id="goalItem">{ this.createGoalList() }</ul> : ""}
         </div>
       </div>
     );
