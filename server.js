@@ -64,6 +64,8 @@ apiRoutes.put('/goalComplete/:goalId', goalscontroller.goalComplete);
 
 apiRoutes.put('/savelayout', layoutcontroller.saveLayout);
 
+apiRoutes.put('/removecomponent', layoutcontroller.removeComponent);
+
 
 apiRoutes.post('/authenticate', function(req, res) {
 

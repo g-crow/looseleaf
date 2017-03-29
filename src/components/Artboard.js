@@ -11,13 +11,15 @@ import Calendar from './Calendar';
 import $ from 'jquery';
 import {browserHistory} from 'react-router';
 var config = require('../../config');
+import { Glyphicon } from 'react-bootstrap';
 
 class Artboard extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      layouts: []
+      layouts: [],
+      removeGoals: false
     };
   }
 
@@ -36,14 +38,18 @@ class Artboard extends Component {
         url: config.serverRoute + '/getlayout/' + this.props.username
       }).done(function(data) {
         self.setState( {layouts: data || [
-          {i: '1', x: 0, y: 0, w: 3, h: 3},
-          {i: '2', x: 3, y: 0, w: 3, h: 3},
-          {i: '3', x: 6, y: 0, w: 3, h: 9},
-          {i: '4', x: 0, y: 3, w: 6, h: 3},
-          {i: '5', x: 0, y: 6, w: 6, h: 3 }
+          {i: '1', x: 0, y: 0, w: 3, h: 3,},
+          {i: '2', x: 3, y: 0, w: 3, h: 3,},
+          {i: '3', x: 6, y: 0, w: 3, h: 9,},
+          {i: '4', x: 0, y: 3, w: 6, h: 3,},
+          {i: '5', x: 0, y: 6, w: 6, h: 3,}
         ]} );
       })
     }
+  }
+
+  onClickAddItem(){
+    this.setState( {removeGoals: false} )
   }
 
   onLayoutChange(layout){
@@ -60,24 +66,39 @@ class Artboard extends Component {
     });
   }
 
+removeGoals(){
+  this.state.layouts.splice(0,1);
+  this.state.removeGoals === false ? this.setState( {removeGoals: true} ) :
+  this.setState( {removeGoals: true} )
+  this.onLayoutChange(this.state.layouts);
+
+}
+
+
   render() {
     var layouts = this.state.layouts
     this.isThereALayout();
     if (this.state.layouts.length === 0) {
       return ( <div>Loading...</div>)
     }
-    console.log('layouts',layouts)
     return (
+
+  <div>
+    <button className="glyphy button addRemove" id="addComp" onClick={this.onClickAddItem.bind(this)}><Glyphicon glyph="plus" /></button>
     	<div id="artboard">
         <ReactGridLayout className="layout" layout={layouts} onLayoutChange={this.onLayoutChange.bind(this)}
           cols={12} rowHeight={30} width={1200}>
-          <div key={"1"} className="comps" id="goals"><Goals username={this.props.realUsername}/></div>
+          {this.state.removeGoals === false ? <div key={"1"} className="comps"
+            id="goals"><button className="glyphy button addRemove" id="removeComp"
+              onClick={this.removeGoals.bind(this)} > <Glyphicon glyph="remove-circle" />
+        </button><Goals username={this.props.realUsername}/></div>: <div></div>}
           <div key={"3"} className="comps" id="journal"><Journal username={this.props.realUsername}/></div>
           <div key={"5"} className="comps" id="notepad"><Notepad username={this.props.realUsername}/></div>
           <div key={"2"} className="comps" id="todo"><Todo username={this.props.realUsername}/></div>
           <div key={"4"} className="comps" id="calendar"><Calendar username={this.props.realUsername}/></div>
         </ReactGridLayout>
     	</div>
+  </div>
     );
   }
 }

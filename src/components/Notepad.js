@@ -82,6 +82,10 @@ if (this.state.entry === "" ){
   }
 }
 
+  // removeComponent(){
+  //   console.log(this.props.layouts)
+  // }
+
     render() {
       if(!this.props.username)
         return (
@@ -97,6 +101,7 @@ if (this.state.entry === "" ){
             <textarea placeholder={this.state.message} value={this.state.entry}
                 onChange={this.entryChange.bind(this)} />
 			      <div className="buttons">
+
     		        <button className="button" id="createNote"
                 value="Add Notes" className="glyphy button" onClick={this.createNoteEvent.bind(this)} ><Glyphicon glyph="plus" /></button>
 
@@ -104,6 +109,7 @@ if (this.state.entry === "" ){
                      onClick={this.updateCurrentNotes.bind(this)}> <Glyphicon glyph="menu-up" /> </button> :
                     <button className="button glyphy" onClick={this.hideNotesHistoryOnClick.bind(this)} ><Glyphicon glyph="menu-down" /></button>}
 
+                  {/* <button className="glyphy button removeComp" onClick={this.removeComponent.bind(this)} > <Glyphicon glyph="remove-circle" /> </button> */}
 
                   </div>
               </div>
