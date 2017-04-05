@@ -78,8 +78,13 @@ removeGoals(){
   render() {
     var layouts = this.state.layouts
     this.isThereALayout();
-    if (this.state.layouts.length === 0) {
+    if (this.state.layouts.length === 0)
+    {
       return ( <div>Loading...</div>)
+    }
+    if (this.state.layouts.length === 4)
+    {
+      this.setState( {removeGoals: true} )
     }
     return (
 
@@ -91,7 +96,7 @@ removeGoals(){
           {this.state.removeGoals === false ? <div key={"1"} className="comps"
             id="goals"><button className="glyphy button addRemove" id="removeComp"
               onClick={this.removeGoals.bind(this)} > <Glyphicon glyph="remove-circle" />
-        </button><Goals username={this.props.realUsername}/></div>: <div></div>}
+        </button><Goals username={this.props.realUsername}/></div> : <div></div>}
           <div key={"3"} className="comps" id="journal"><Journal username={this.props.realUsername}/></div>
           <div key={"5"} className="comps" id="notepad"><Notepad username={this.props.realUsername}/></div>
           <div key={"2"} className="comps" id="todo"><Todo username={this.props.realUsername}/></div>
